@@ -6,7 +6,16 @@ INCLUDE = ./include/cub3d.h ${LIBFT_DIR}/libft.h ${MINILIBX_DIR}/mlx.h
 
 LIBFT_DIR = libft
 
+UNAME := $(shell uname)
+
+ifeq ($(UNAME), Darwin)
 MINILIBX_DIR = minilibx_macos
+LIBRARIES = -lft -lmlx -lm -framework OpenGL -framework AppKit
+endif
+ifeq ($(UNAME), Linux)
+MINILIBX_DIR = minilibx_linux
+LIBRARIES = -lft -lmlx -lm -framework OpenGL -framework AppKit
+endif
 
 CC = gcc
 RM = rm -f
@@ -42,7 +51,7 @@ DEPS = $(addsuffix .d, $(basename $(SRCS)))
 all: ${NAME}
 
 ${NAME}: ${OBJS} ${LIBFT_DIR}/libft.a ${MINILIBX_DIR}/libmlx.a $(INCLUDE) Makefile
-	@${CC} ${OBJS} -L${LIBFT_DIR} -L${MINILIBX_DIR} -lft -lmlx -lm -framework OpenGL -framework AppKit -o ${NAME}
+	@${CC} ${OBJS} -L${LIBFT_DIR} -L${MINILIBX_DIR} ${LIBRARIES} -o ${NAME}
 	@echo "\n$(RED) Created $(NAME) ✓ $(DEF_COLOR)\n"
 
 $(LIBFT_DIR)/libft.a:
