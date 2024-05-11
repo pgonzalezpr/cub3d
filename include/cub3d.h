@@ -15,8 +15,7 @@
 
 # include "libft.h"
 # include "mlx.h"
-# include <fcntl.h>
-# include <limits.h>
 # include <math.h>
+# include <string.h>
 
 #endif
