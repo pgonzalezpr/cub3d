@@ -15,7 +15,7 @@ LIBRARIES = -lft -lmlx -lm -framework OpenGL -framework AppKit
 endif
 ifeq ($(UNAME), Linux)
 MINILIBX_DIR = minilibx_linux
-LIBRARIES = -lft -lmlx -lm -framework OpenGL -framework AppKit
+LIBRARIES = -lft -lmlx -lX11 -lXext
 endif
 
 CC = gcc
