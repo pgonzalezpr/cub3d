@@ -14,6 +14,9 @@ void	print_map(t_map *map)
 	}
 }
 
+/**
+ * Prints the parsed contents from the input file for debugging purposes
+*/
 void	print_cub(t_cub *cub)
 {
 	ft_dprintf(STDOUT_FILENO, "NO: %s\n", cub->textures->no_path);
