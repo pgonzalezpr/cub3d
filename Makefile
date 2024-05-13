@@ -1,6 +1,7 @@
 NAME = cub3d
 
-SRCS = ./srcs/main.c 
+SRCS = ./srcs/main.c ./srcs/parsing/parse_main.c ./srcs/parsing/parse_utils.c ./srcs/parsing/parse_error.c \
+		./srcs/parsing/copy_file_get_info.c
 			
 INCLUDE = ./include/cub3d.h ${LIBFT_DIR}/libft.h ${MINILIBX_DIR}/mlx.h
 
@@ -42,7 +43,7 @@ DARK_GREEN =	\033[38;2;75;179;82m
 DARK_YELLOW =	\033[38;5;143m
 
 %.o: %.c
-	@${CC} ${CFLAGS} -c $< -o $@
+	@${CC} ${CFLAGS} -I./include -c $< -o $@
 	@echo "$(BROWN)Compiling   ${MAGENTA}→   $(CYAN)$< $(DEF_COLOR)"
 
 OBJS = ${SRCS:.c=.o}
@@ -51,7 +52,7 @@ DEPS = $(addsuffix .d, $(basename $(SRCS)))
 all: ${NAME}
 
 ${NAME}: ${OBJS} ${LIBFT_DIR}/libft.a ${MINILIBX_DIR}/libmlx.a $(INCLUDE) Makefile
-	@${CC} ${OBJS} -L${LIBFT_DIR} -L${MINILIBX_DIR} ${LIBRARIES} -o ${NAME}
+	@${CC} ${OBJS} -I./include -L${LIBFT_DIR} -L${MINILIBX_DIR} ${LIBRARIES} -o ${NAME}
 	@echo "\n$(RED) Created $(NAME) ✓ $(DEF_COLOR)\n"
 
 $(LIBFT_DIR)/libft.a:
