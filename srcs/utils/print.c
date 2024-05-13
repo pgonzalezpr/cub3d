@@ -1,4 +1,4 @@
-# include "cub3d.h"
+#include "cub3d.h"
 
 void	print_map(t_map *map)
 {
@@ -25,12 +25,12 @@ void	print_cub(t_cub *cub)
 	ft_dprintf(STDOUT_FILENO, "EA: %s\n", cub->textures->ea_path);
 	write(STDOUT_FILENO, "\n", 1);
 	ft_dprintf(STDOUT_FILENO, "Floor color -> R: %d, G: %d, B: %d\n",
-            cub->map->floor.r, cub->map->floor.g, cub->map->floor.b);
+		cub->map->floor.r, cub->map->floor.g, cub->map->floor.b);
 	ft_dprintf(STDOUT_FILENO, "Ceiling color -> R: %d, G: %d, B: %d\n",
-            cub->map->ceiling.r, cub->map->ceiling.g, cub->map->ceiling.b);
+		cub->map->ceiling.r, cub->map->ceiling.g, cub->map->ceiling.b);
 	write(STDOUT_FILENO, "\n", 1);
 	print_map(cub->map);
 	write(STDOUT_FILENO, "\n", 1);
 	ft_dprintf(STDOUT_FILENO, "Player -> x: %d, y: %d, type: %c\n",
-				cub->player->pos.x, cub->player->pos.y, cub->player->type);
+		cub->player->pos.x, cub->player->pos.y, cub->player->type);
 }
