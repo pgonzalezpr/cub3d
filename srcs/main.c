@@ -55,17 +55,18 @@ void	dummy_data(t_cub *cub)
 	cub->map->ceiling.r = 225;
 	cub->map->ceiling.g = 30;
 	cub->map->ceiling.b = 0;
-	cub->map->map_arr[0] = ft_strdup("1111111111111111111111111");
-	cub->map->map_arr[1] = ft_strdup("1000000000000000000100001");
-	cub->map->map_arr[2] = ft_strdup("1001000000000N00000000001");
-	cub->map->map_arr[3] = ft_strdup("1001000000000000001000001");
-	cub->map->map_arr[4] = ft_strdup("1001000000000000001000001");
-	cub->map->map_arr[5] = ft_strdup("1001000000100000001000001");
-	cub->map->map_arr[6] = ft_strdup("1001000000000000001000001");
-	cub->map->map_arr[7] = ft_strdup("1001000000001000001000001");
-	cub->map->map_arr[8] = ft_strdup("1111111111111111111111111");
 	cub->map->height = 9;
 	cub->map->width = 25;
+	cub->map->map_arr = ft_malloc(cub->map->height * sizeof(char *), cub);
+	cub->map->map_arr[0] = ft_strdup("1111111111111111111111111\n");
+	cub->map->map_arr[1] = ft_strdup("1000000000000000000100001\n");
+	cub->map->map_arr[2] = ft_strdup("1001000000000N00000000001\n");
+	cub->map->map_arr[3] = ft_strdup("1001000000000000001000001\n");
+	cub->map->map_arr[4] = ft_strdup("1001000000000000001000001\n");
+	cub->map->map_arr[5] = ft_strdup("1001000000100000001000001\n");
+	cub->map->map_arr[6] = ft_strdup("1001000000000000001000001\n");
+	cub->map->map_arr[7] = ft_strdup("1001000000001000001000001\n");
+	cub->map->map_arr[8] = ft_strdup("1111111111111111111111111\n");
 	cub->player->pos.x = 13;
 	cub->player->pos.y = 2;
 	cub->player->type = 'N';
@@ -79,5 +80,6 @@ int	main(int argc, char **argv)
 	init_cub(&cub);
 	//parse_cub(argv[1], &cub);
 	dummy_data(&cub);
+	print_cub(&cub);
 	exit_cub(&cub, NULL, EXIT_SUCCESS);
 }
