@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
 #include "cub3d.h"
 
 void	get_matrix(t_parse *info)
@@ -45,3 +46,4 @@ void	copy_file(int fd, t_parse *info)
 	free(tmp);
 	get_matrix(info);
 }
+*/

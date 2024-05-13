@@ -13,13 +13,22 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+/*==========================HEADER FILES============================*/
+
 # include "libft.h"
 # include "mlx.h"
+# include <fcntl.h>
 # include <math.h>
 # include <string.h>
-# include <fcntl.h>
 
-/*=============================PARSING============================*/
+/*==========================STRING CONSTANTS============================*/
+
+# define ARGC_ERR "Invalid number of arguments\n"
+# define FORMAT_ERR "Invalid file\n"
+# define MALLOC_ERR "Memory allocation error\n"
+# define FILE_FORMAT ".cub"
+
+/*=============================STRUCTS============================*/
 
 typedef struct s_point
 {
@@ -27,26 +36,58 @@ typedef struct s_point
 	int			y;
 }				t_point;
 
-
-typedef struct s_parse
+typedef struct s_color
 {
-	char		*map_line;
-	char		**map;
-	char		*no;
-	char		*so;
-	char		*we;
-	char		*ea;
-	int			player;
-	char		player_type;
-	int			color_up;
-	int			color_down;
-	t_point		player_pos;
-}				t_parse;
+	int			r;
+	int			g;
+	int			b;
+}				t_color;
 
-void	*ft_malloc(size_t bytes);
-t_parse	parsing_all(int argc, char **argv);
-int		ft_strrncmp(char *s1, char *s2, int n);
-void	parsing_error(char *msg, t_parse *info);
-void	copy_file(int fd, t_parse *info);
+typedef struct s_player
+{
+	t_point		pos;
+	char		type;
+}				t_player;
+
+typedef struct s_textures
+{
+	char		*no_path;
+	char		*so_path;
+	char		*we_path;
+	char		*ea_path;
+	void		*no;
+	void		*so;
+	void		*we;
+	void		*ea;
+}				t_textures;
+
+typedef struct s_map
+{
+	t_color		floor;
+	t_color		ceiling;
+	char		**map_arr;
+	int			width;
+	int			height;
+}				t_map;
+
+typedef struct s_cub
+{
+	t_textures	*textures;
+	t_map		*map;
+	t_player	*player;
+	void		*mlx_ptr;
+}				t_cub;
+
+/*=============================PARSING============================*/
+
+void			parse_cub(char *filename, t_cub *cub);
+//void			copy_file(int fd, t_parse *info);
+
+/*=============================UTILS============================*/
+
+void			*ft_malloc(size_t bytes, t_cub *cub);
+int				ft_strrncmp(char *s1, char *s2, int n);
+void			clean_cub(t_cub *cub);
+void			exit_cub(t_cub *cub, char *msg, int status);
 
 #endif
