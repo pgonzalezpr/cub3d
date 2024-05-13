@@ -12,6 +12,9 @@
 
 #include "cub3d.h"
 
+/**
+ * Exit program. cub struct and error message are optional
+*/
 void	exit_cub(t_cub *cub, char *msg, int status)
 {
 	if (cub)
@@ -29,6 +32,9 @@ void	init_cub(t_cub *cub)
 	cub->player = ft_malloc(sizeof(t_player), cub);
 }
 
+/**
+ * Buffer-safe check for .cub extension
+*/
 void	check_input(int argc, char **argv)
 {
 	size_t	len;
@@ -80,6 +86,5 @@ int	main(int argc, char **argv)
 	init_cub(&cub);
 	//parse_cub(argv[1], &cub);
 	dummy_data(&cub);
-	print_cub(&cub);
 	exit_cub(&cub, NULL, EXIT_SUCCESS);
 }
