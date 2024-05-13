@@ -32,5 +32,5 @@ void	print_cub(t_cub *cub)
 	print_map(cub->map);
 	write(STDOUT_FILENO, "\n", 1);
 	ft_dprintf(STDOUT_FILENO, "Player -> x: %d, y: %d, type: %c\n",
-		cub->player->pos.x, cub->player->pos.y, cub->player->type);
+		cub->map->initial.x, cub->map->initial.y, cub->map->ply_type);
 }

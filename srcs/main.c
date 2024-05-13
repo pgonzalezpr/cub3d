@@ -73,9 +73,9 @@ void	dummy_data(t_cub *cub)
 	cub->map->map_arr[6] = ft_strdup("1001000000000000001000001\n");
 	cub->map->map_arr[7] = ft_strdup("1001000000001000001000001\n");
 	cub->map->map_arr[8] = ft_strdup("1111111111111111111111111\n");
-	cub->player->pos.x = 13;
-	cub->player->pos.y = 2;
-	cub->player->type = 'N';
+	cub->map->initial.x = 13;
+	cub->map->initial.y = 2;
+	cub->map->ply_type = 'N';
 }
 
 int	main(int argc, char **argv)
@@ -84,7 +84,8 @@ int	main(int argc, char **argv)
 
 	check_input(argc, argv);
 	init_cub(&cub);
-	//parse_cub(argv[1], &cub);
+	parse_cub(argv[1], &cub);
 	dummy_data(&cub);
+	print_cub(&cub);
 	exit_cub(&cub, NULL, EXIT_SUCCESS);
 }
