@@ -1,7 +1,6 @@
 NAME = cub3d
 
-SRCS = ./srcs/main.c ./srcs/clean.c ./srcs/parsing/parse_main.c ./srcs/parsing/parse_utils.c \
-		./srcs/parsing/copy_file_get_info.c ./srcs/utils/utils.c
+SRCS = ./srcs/main.c ./srcs/clean.c ./srcs/utils/utils.c \
 			
 INCLUDE = ./include/cub3d.h ${LIBFT_DIR}/libft.h ${MINILIBX_DIR}/mlx.h
 

@@ -43,12 +43,18 @@ void	check_input(int argc, char **argv)
 		exit_cub(NULL, FORMAT_ERR, EXIT_FAILURE);
 }
 
+void	dummy_data(t_cub *cub)
+{
+	
+}
+
 int	main(int argc, char **argv)
 {
 	t_cub	cub;
 
 	check_input(argc, argv);
 	init_cub(&cub);
-	parse_cub(argv[1], &cub);
+	//parse_cub(argv[1], &cub);
+	dummy_data(&cub);
 	exit_cub(&cub, NULL, EXIT_SUCCESS);
 }
