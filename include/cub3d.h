@@ -87,6 +87,7 @@ void			parse_cub(char *filename, t_cub *cub);
 
 void			*ft_malloc(size_t bytes, t_cub *cub);
 int				ft_strrncmp(char *s1, char *s2, int n);
+void			print_cub(t_cub *cub);
 void			clean_cub(t_cub *cub);
 void			exit_cub(t_cub *cub, char *msg, int status);
 
