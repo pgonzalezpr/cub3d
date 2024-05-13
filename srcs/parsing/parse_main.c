@@ -19,10 +19,10 @@
  *  The map should be allocated with malloc and saved in into cub->map->map_arr.
  *  Store map dimensions in cub->map->heigth/width
  * 
- *  The player initial position has to be stored in cub->player->pos.x/y. 
+ *  The player initial position has to be stored in cub->map->initial.x/y. 
  *  X and y are the horizontal and vertical dimensions, measured from 0 to 
  *  cub->map->width and cub->map->height, respectively. Store the player 
- *  initial orientation in cub->map->player->type. 
+ *  initial orientation in cub->map->ply_type. 
 */
 
 void	parse_cub(char *filename, t_cub *cub)

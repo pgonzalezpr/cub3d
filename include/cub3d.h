@@ -45,8 +45,7 @@ typedef struct s_color
 
 typedef struct s_player
 {
-	t_point		pos;
-	char		type;
+	t_point		pos_pix;
 }				t_player;
 
 typedef struct s_textures
@@ -65,9 +64,11 @@ typedef struct s_map
 {
 	t_color		floor;
 	t_color		ceiling;
+	t_point		initial;
 	char		**map_arr;
 	int			width;
 	int			height;
+	char		ply_type;
 }				t_map;
 
 typedef struct s_cub
