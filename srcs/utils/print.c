@@ -27,4 +27,7 @@ void	print_cub(t_cub *cub)
             cub->map->ceiling.r, cub->map->ceiling.g, cub->map->ceiling.b);
 	write(STDOUT_FILENO, "\n", 1);
 	print_map(cub->map);
+	write(STDOUT_FILENO, "\n", 1);
+	ft_dprintf(STDOUT_FILENO, "Player -> x: %d, y: %d, type: %c\n",
+				cub->player->pos.x, cub->player->pos.y, cub->player->type);
 }
