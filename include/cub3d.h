@@ -45,7 +45,7 @@ typedef struct s_color
 
 typedef struct s_player
 {
-	t_point		pos;
+	t_point		pos_pix;
 }				t_player;
 
 typedef struct s_textures
