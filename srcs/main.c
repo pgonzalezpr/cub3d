@@ -45,7 +45,30 @@ void	check_input(int argc, char **argv)
 
 void	dummy_data(t_cub *cub)
 {
-	
+	cub->textures->no_path = ft_strdup("./textures/no_texture.png");
+	cub->textures->so_path = ft_strdup("./textures/so_texture.png");
+	cub->textures->we_path = ft_strdup("./textures/we_texture.png");
+	cub->textures->ea_path = ft_strdup("./textures/ea_texture.png");
+	cub->map->floor.r = 220;
+	cub->map->floor.g = 100;
+	cub->map->floor.b = 0;
+	cub->map->ceiling.r = 225;
+	cub->map->ceiling.g = 30;
+	cub->map->ceiling.b = 0;
+	cub->map->map_arr[0] = ft_strdup("1111111111111111111111111");
+	cub->map->map_arr[1] = ft_strdup("1000000000000000000100001");
+	cub->map->map_arr[2] = ft_strdup("1001000000000N00000000001");
+	cub->map->map_arr[3] = ft_strdup("1001000000000000001000001");
+	cub->map->map_arr[4] = ft_strdup("1001000000000000001000001");
+	cub->map->map_arr[5] = ft_strdup("1001000000100000001000001");
+	cub->map->map_arr[6] = ft_strdup("1001000000000000001000001");
+	cub->map->map_arr[7] = ft_strdup("1001000000001000001000001");
+	cub->map->map_arr[8] = ft_strdup("1111111111111111111111111");
+	cub->map->height = 9;
+	cub->map->width = 25;
+	cub->player->pos.x = 13;
+	cub->player->pos.y = 2;
+	cub->player->type = 'N';
 }
 
 int	main(int argc, char **argv)
