@@ -40,6 +40,31 @@
 # define PI 3.14159265358979323846
 # define FOV 60
 
+/*==========================EVENTS============================*/
+
+# define KEY_PRESS_EVENT 2
+# define KEY_RELEASE_EVENT 3
+# define EXIT_EVENT 17
+# define PRESS_MASK 1L<<0
+# define RELEASE_MASK 1L<<1
+# define EXIT_MASK 1L<<17
+# define ESC_KEY_CODE 65307
+# define W_KEY_CODE 119
+# define A_KEY_CODE 97
+# define S_KEY_CODE 115
+# define D_KEY_CODE 100
+# define LEFT_KEY_CODE 65361
+# define RIGHT_KEY_CODE 65363
+
+/*==========================MOVEMENTS============================*/
+
+# define MOV_FORW_CODE 1
+# define MOV_BACKW_CODE 2
+# define MOV_RIGHT_CODE 3
+# define MOV_LEFT_CODE 4
+# define ROT_RIGHT_CODE 5
+# define ROT_LEFT_CODE 6
+
 /*=============================STRUCTS============================*/
 
 typedef struct s_point
@@ -55,8 +80,19 @@ typedef struct s_color
 	int			b;
 }				t_color;
 
+typedef struct s_move
+{
+	int			forw;
+	int			backw;
+	int			right;
+	int			left;
+	int			rot_right;
+	int			rot_left;
+}				t_move;
+
 typedef struct s_player
 {
+	t_move		moves;
 	t_point		pos_pix;
 	double		angle;
 	double		fov;
@@ -92,6 +128,7 @@ typedef struct s_cub
 	t_player	*player;
 	void		*mlx_ptr;
 	void		*win_ptr;
+	void		*img;
 }				t_cub;
 
 /*=============================PARSING============================*/
@@ -102,6 +139,10 @@ void			parse_cub(char *filename, t_cub *cub);
 /*=============================GRAPHICS============================*/
 
 void			start_cub(t_cub *cub);
+int				key_press(int keycode, void *cub);
+int				key_release(int keycode, void *cub);
+int				quit_cub(void *cub);
+void			hook_cub(t_cub *cub);
 
 /*=============================UTILS============================*/
 

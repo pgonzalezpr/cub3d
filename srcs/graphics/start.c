@@ -1,16 +1,15 @@
 #include "cub3d.h"
 
-int	handle_key(int keycode, void *cub)
-{
-	if (keycode == 65307)
-		exit_cub(cub, NULL, EXIT_SUCCESS);
-	return (1);
-}
-
 int	render_cub(void *cub)
 {
-	if (cub)
-		return (1);
+	t_cub	*cub_p;
+
+	cub_p = (t_cub *)cub;
+	mlx_destroy_image(cub_p->mlx_ptr, cub_p->img);
+	cub_p->img = mlx_new_image(cub_p->mlx_ptr, W_WIDTH, W_HEIGHT);
+	hook_cub(cub);
+	//raycast();
+	mlx_put_image_to_window(cub_p->mlx_ptr, cub_p->win_ptr, cub_p->img, 0, 0);
 	return (1);
 }
 
@@ -58,6 +57,9 @@ void	start_cub(t_cub *cub)
 	init_player(cub);
 	init_textures(cub);
 	mlx_loop_hook(cub->mlx_ptr, &render_cub, cub);
-	mlx_key_hook(cub->win_ptr, &handle_key, cub);
+    mlx_hook(cub->win_ptr, KEY_PRESS_EVENT, PRESS_MASK, &key_press, cub);
+    mlx_hook(cub->win_ptr, KEY_RELEASE_EVENT, RELEASE_MASK, &key_release, cub);
+    mlx_hook(cub->win_ptr, EXIT_EVENT, EXIT_MASK, &quit_cub, cub);
+	cub->img = mlx_new_image(cub->mlx_ptr, W_WIDTH, W_HEIGHT);
 	mlx_loop(cub->mlx_ptr);
 }
