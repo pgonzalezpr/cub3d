@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 17:15:02 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/13 13:06:54 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:17:08 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,23 @@
  *  cub->map->width and cub->map->height, respectively. Store the player 
  *  initial orientation in cub->map->ply_type. 
 */
+void	init(t_parse *info, t_cub *cub)
+{
+	(void)cub;
+	info->map_line = NULL;
+	info->player = 0;
+}
 
 void	parse_cub(char *filename, t_cub *cub)
 {
-	//copy_file(fd, &info);
+	t_parse	info;
+	int		fd;
+
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		exit_cub(cub, FORMAT_ERR, EXIT_FAILURE);
+	init(&info, cub);
+	copy_file(fd, &info);
 	if (filename && cub)
 		return ;
 }

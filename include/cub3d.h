@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:34:53 by pedro-go          #+#    #+#             */
-/*   Updated: 2024/05/13 13:03:47 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:51:09 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,18 @@ typedef struct s_cub
 	void		*mlx_ptr;
 }				t_cub;
 
+
+typedef	struct s_parse
+{
+	char	*map_line;
+	int		player;
+}				t_parse;
+
 /*=============================PARSING============================*/
 
 void			parse_cub(char *filename, t_cub *cub);
-//void			copy_file(int fd, t_parse *info);
-
+void			copy_file(int fd, t_parse *info, t_cub *cub);
+void			init(t_parse *info, t_cub *cub);
 /*=============================UTILS============================*/
 
 void			*ft_malloc(size_t bytes, t_cub *cub);
