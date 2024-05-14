@@ -51,10 +51,10 @@ void	check_input(int argc, char **argv)
 
 void	dummy_data(t_cub *cub)
 {
-	cub->textures->no_path = ft_strdup("./textures/no_texture.png");
-	cub->textures->so_path = ft_strdup("./textures/so_texture.png");
-	cub->textures->we_path = ft_strdup("./textures/we_texture.png");
-	cub->textures->ea_path = ft_strdup("./textures/ea_texture.png");
+	cub->textures->no_path = ft_strdup("./textures/no_texture.xpm");
+	cub->textures->so_path = ft_strdup("./textures/so_texture.xpm");
+	cub->textures->we_path = ft_strdup("./textures/we_texture.xpm");
+	cub->textures->ea_path = ft_strdup("./textures/ea_texture.xpm");
 	cub->map->floor.r = 220;
 	cub->map->floor.g = 100;
 	cub->map->floor.b = 0;
@@ -86,6 +86,6 @@ int	main(int argc, char **argv)
 	init_cub(&cub);
 	parse_cub(argv[1], &cub);
 	dummy_data(&cub);
-	print_cub(&cub);
+	start_cub(&cub);
 	exit_cub(&cub, NULL, EXIT_SUCCESS);
 }

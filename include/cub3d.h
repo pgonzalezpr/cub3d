@@ -12,11 +12,13 @@
 
 #ifndef CUB3D_H
 # define CUB3D_H
+# define _USE_MATH_DEFINES
 
 /*==========================HEADER FILES============================*/
 
 # include "libft.h"
 # include "mlx.h"
+# include <X11/X.h>
 # include <fcntl.h>
 # include <math.h>
 # include <string.h>
@@ -27,6 +29,16 @@
 # define FORMAT_ERR "Invalid file\n"
 # define MALLOC_ERR "Memory allocation error\n"
 # define FILE_FORMAT ".cub"
+# define WIN_ERR "Error opening window\n"
+# define TXT_ERR "Error opening texture\n"
+
+/*==========================NUMERIC CONSTANTS============================*/
+
+# define W_WIDTH 1280
+# define W_HEIGHT 720
+# define TILE_SIZE 40
+# define PI 3.14159265358979323846
+# define FOV 60
 
 /*=============================STRUCTS============================*/
 
@@ -46,6 +58,8 @@ typedef struct s_color
 typedef struct s_player
 {
 	t_point		pos_pix;
+	double		angle;
+	double		fov;
 }				t_player;
 
 typedef struct s_textures
@@ -77,12 +91,17 @@ typedef struct s_cub
 	t_map		*map;
 	t_player	*player;
 	void		*mlx_ptr;
+	void		*win_ptr;
 }				t_cub;
 
 /*=============================PARSING============================*/
 
 void			parse_cub(char *filename, t_cub *cub);
 //void			copy_file(int fd, t_parse *info);
+
+/*=============================GRAPHICS============================*/
+
+void			start_cub(t_cub *cub);
 
 /*=============================UTILS============================*/
 
