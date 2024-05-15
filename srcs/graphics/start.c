@@ -69,9 +69,9 @@ void	start_cub(t_cub *cub)
 	init_player(cub);
 	init_textures(cub);
 	mlx_loop_hook(cub->mlx_ptr, &render_cub, cub);
-    mlx_hook(cub->win_ptr, KEY_PRESS_EVENT, PRESS_MASK, &key_press, cub);
-    mlx_hook(cub->win_ptr, KEY_RELEASE_EVENT, RELEASE_MASK, &key_release, cub);
-    mlx_hook(cub->win_ptr, EXIT_EVENT, EXIT_MASK, &quit_cub, cub);
+	mlx_hook(cub->win_ptr, KEY_PRESS_EVENT, PRESS_MASK, &key_press, cub);
+	mlx_hook(cub->win_ptr, KEY_RELEASE_EVENT, RELEASE_MASK, &key_release, cub);
+	mlx_hook(cub->win_ptr, EXIT_EVENT, EXIT_MASK, &quit_cub, cub);
 	cub->img = mlx_new_image(cub->mlx_ptr, W_WIDTH, W_HEIGHT);
 	mlx_loop(cub->mlx_ptr);
 }
