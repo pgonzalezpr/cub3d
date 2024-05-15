@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
+/*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 17:15:02 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/14 16:17:08 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/15 15:15:27 by adanylev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,16 @@
  *  cub->map->width and cub->map->height, respectively. Store the player 
  *  initial orientation in cub->map->ply_type. 
 */
-void	init(t_parse *info, t_cub *cub)
+void	init(t_parse *info)
 {
-	(void)cub;
 	info->map_line = NULL;
 	info->player = 0;
+	info->ea = 0;
+	info->we = 0;
+	info->so = 0;
+	info->no = 0;
+	info->c = 0;
+	info->f = 0;
 }
 
 void	parse_cub(char *filename, t_cub *cub)
@@ -39,8 +44,8 @@ void	parse_cub(char *filename, t_cub *cub)
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		exit_cub(cub, FORMAT_ERR, EXIT_FAILURE);
-	init(&info, cub);
-	copy_file(fd, &info);
+	init(&info);
+	copy_file(fd, &info, cub);
 	if (filename && cub)
 		return ;
 }

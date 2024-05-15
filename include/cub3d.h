@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
+/*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:34:53 by pedro-go          #+#    #+#             */
-/*   Updated: 2024/05/14 16:51:09 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/15 15:18:41 by adanylev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,14 +83,26 @@ typedef struct s_cub
 typedef	struct s_parse
 {
 	char	*map_line;
+	char	**map_matrix;
 	int		player;
+	int		no;
+	int		so;
+	int		we;
+	int		ea;
+	int		f;
+	int		c;
 }				t_parse;
 
 /*=============================PARSING============================*/
 
 void			parse_cub(char *filename, t_cub *cub);
 void			copy_file(int fd, t_parse *info, t_cub *cub);
-void			init(t_parse *info, t_cub *cub);
+void			init(t_parse *info);
+void			get_matrix(t_parse *info, t_cub	*cub);
+int				get_colours(char *colour, t_cub *cub);
+void			copy_error(t_parse *info, t_cub *cub);
+int				free_matrix(char **matrix, int err);
+
 /*=============================UTILS============================*/
 
 void			*ft_malloc(size_t bytes, t_cub *cub);
