@@ -18,7 +18,6 @@
 
 # include "libft.h"
 # include "mlx.h"
-# include <X11/X.h>
 # include <fcntl.h>
 # include <math.h>
 # include <string.h>
@@ -39,12 +38,18 @@
 # define TILE_SIZE 40
 # define PI 3.14159265358979323846
 # define FOV 60
+# define MOV_SPEED 4
+# define ROT_SPEED 0.05
 
 /*==========================EVENTS============================*/
 
 # define KEY_PRESS_EVENT 2
 # define KEY_RELEASE_EVENT 3
 # define EXIT_EVENT 17
+
+/*
+==========================KEY CODES LINUX============================
+
 # define PRESS_MASK 1L<<0
 # define RELEASE_MASK 1L<<1
 # define EXIT_MASK 1L<<17
@@ -55,6 +60,21 @@
 # define D_KEY_CODE 100
 # define LEFT_KEY_CODE 65361
 # define RIGHT_KEY_CODE 65363
+
+*/
+
+/*==========================KEY CODES MAC============================*/
+
+# define PRESS_MASK 0
+# define RELEASE_MASK 0
+# define EXIT_MASK 0
+# define ESC_KEY_CODE 53
+# define W_KEY_CODE 13
+# define A_KEY_CODE 0
+# define S_KEY_CODE 1
+# define D_KEY_CODE 2
+# define LEFT_KEY_CODE 123
+# define RIGHT_KEY_CODE 124
 
 /*==========================MOVEMENTS============================*/
 
