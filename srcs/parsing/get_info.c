@@ -6,7 +6,7 @@
 /*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 12:34:57 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/15 19:33:56 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/16 15:28:08 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,23 @@ void	check_params(char **file, t_parse *info)
 		}
 		x++;
 	}
+}
+
+int	check_extentions(t_cub *cub)
+{
+	if (ft_strrncmp(cub->textures->no_path, ".xpm", 4) &&
+		ft_strrncmp(cub->textures->no_path, ".png", 4))
+		return (1);
+	if (ft_strrncmp(cub->textures->so_path, ".xpm", 4) &&
+		ft_strrncmp(cub->textures->so_path, ".png", 4))
+		return (1);
+	if (ft_strrncmp(cub->textures->we_path, ".xpm", 4) &&
+		ft_strrncmp(cub->textures->we_path, ".png", 4))
+		return (1);
+	if (ft_strrncmp(cub->textures->ea_path, ".xpm", 4) &&
+		ft_strrncmp(cub->textures->ea_path, ".png", 4))
+		return (1);
+	return (0);
 }
 
 int	validate_params(t_parse *info)
@@ -92,7 +109,7 @@ void	get_matrix(t_parse *info, t_cub	*cub)
 	if (!file)
 		exit_cub(cub, FORMAT_ERR, EXIT_FAILURE);
 	check_params(file, info);
-	if (validate_params(info) || get_textures(cub, file))
+	if (validate_params(info) || get_textures(cub, file) || check_extentions(cub))
 	{
 		free_matrix(file, 0);
 		exit_cub(cub, "Invalid parameters\n", EXIT_FAILURE);
