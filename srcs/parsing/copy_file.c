@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   copy_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 11:27:03 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/15 15:27:00 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/05/15 19:54:13 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	copy_file(int fd, t_parse *info, t_cub *cub)
 	}
 	while(tmp)
 	{
-		info->map_line = ft_strjoin(info->map_line, tmp);
+		info->map_line = ft_strjoin1(info->map_line, tmp);
 		free (tmp);
 		tmp = get_next_line(fd);
 	}

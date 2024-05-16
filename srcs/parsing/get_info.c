@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 12:34:57 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/15 15:28:01 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/05/15 19:33:56 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,15 @@ int	get_textures(t_cub *cub, char **file)
 			else if (file[x][y] == 'E' && file[x][y + 1] == 'A') 
 				cub->textures->ea_path = ft_strtrim(file[x], "EA \t");
 			else if (file[x][y] == 'F' || file[x][y] == 'C')
-				get_colours(&file[x][y], cub);
+			{
+				if (get_colours(&file[x][y], cub))
+					return (1);
+			}
 			y++;
 		}
 		x++;
 	}
-	return (1);
+	return (0);
 }
 
 void	get_matrix(t_parse *info, t_cub	*cub)
@@ -92,7 +95,6 @@ void	get_matrix(t_parse *info, t_cub	*cub)
 	if (validate_params(info) || get_textures(cub, file))
 	{
 		free_matrix(file, 0);
-		free(info->map_line);
-		exit_cub(cub, "Invalid arameters\n", EXIT_FAILURE);
+		exit_cub(cub, "Invalid parameters\n", EXIT_FAILURE);
 	}
 }

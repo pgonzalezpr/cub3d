@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:34:53 by pedro-go          #+#    #+#             */
-/*   Updated: 2024/05/15 15:18:41 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/05/15 19:54:47 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ void			get_matrix(t_parse *info, t_cub	*cub);
 int				get_colours(char *colour, t_cub *cub);
 void			copy_error(t_parse *info, t_cub *cub);
 int				free_matrix(char **matrix, int err);
+char			*ft_strjoin1(char *s1, char *s2);
 
 /*=============================UTILS============================*/
 
