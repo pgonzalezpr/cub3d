@@ -6,7 +6,7 @@
 /*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 12:46:33 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/16 15:31:17 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/18 15:48:36 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int	get_colours(char *colour, t_cub *cub)
 		if (check_nums(trimmed) || i > 2 || ft_strlen(trimmed) > 3 || 
 			((ft_strlen(trimmed)) == 3 && (ft_strncmp("256", trimmed, 3) <= 0)))
 		{
-			printf("%s\n", tmp[i]);
 			free(trimmed);
 			return (free_matrix(tmp, 1));
 		}

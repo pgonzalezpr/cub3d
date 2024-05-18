@@ -6,13 +6,32 @@
 /*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 11:27:03 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/16 15:35:47 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/18 15:47:12 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 #define MAP_CHAR "10NSEW" 
+
+int is_whitespace(char c)
+{
+	if ((c == ' ' || c == '\t' || c == '\n'))
+        return (1);
+    return (0);
+}
+
+int	accepted(char *content)
+{
+	if (ft_strncmp(content, "NO", 2) == 0 || 
+        ft_strncmp(content, "SO", 2) == 0 ||
+        ft_strncmp(content, "EA", 2) == 0 ||
+        ft_strncmp(content, "WE", 2) == 0 ||
+        ft_strncmp(content, "F ", 2) == 0 || 
+        ft_strncmp(content, "C ", 2) == 0)
+		return (1);
+	return (0);
+}
 
 int validate_single_map(char *content) 
 {
@@ -21,41 +40,34 @@ int validate_single_map(char *content)
 
 	i = 0;
 	in_map = 0;
-    while (content[i] != '\0')
+    while (content[i])
 	{
-        while (content[i] != '\0' && 
-               (ft_strncmp(&content[i], "NO", 2) == 0 || 
-                ft_strncmp(&content[i], "SO", 2) == 0 ||
-                ft_strncmp(&content[i], "EA", 2) == 0 ||
-                ft_strncmp(&content[i], "WE", 2) == 0 ||
-                ft_strncmp(&content[i], "F ", 2) == 0 || 
-                ft_strncmp(&content[i], "C ", 2) == 0))
+		while (content[i] && is_whitespace(content[i]))
+            i++;
+        while (content[i] && accepted(&content[i]))
 		{
-            while (content[i] != '\0' && content[i] != '\n')
+            while (content[i] && content[i] != '\n')
                 i++;
             if (content[i] == '\n')
                 i++;
         }
+		if (!in_map && content[i] && !ft_strchr(MAP_CHAR, content[i]) && !is_whitespace(content[i]))
+            return (1);
         if (ft_strchr(MAP_CHAR, content[i])) 
 		{
             if (in_map) 
 				return (1);
             in_map = 1;
-            while (content[i] != '\0') 
+            while (content[i]) 
 			{
 				if (content[i] == '\n' && content[i + 1] && content[i + 1] == '\n')
 					break;
-                if (!ft_strchr(MAP_CHAR, content[i]) && content[i] != ' ' &&
-					content[i] != '\t' && content[i] != '\n')
+                if (!ft_strchr(MAP_CHAR, content[i]) && !is_whitespace(content[i]))
                     break;
                 i++;
             }
 		}
-		//HERE TO CHECK FOR OTHER RANDOM TEXT(INVALID_INFO.CUB)
-        while (content[i] != '\0' && content[i] != '\n')
-            i++;
-        if (content[i] == '\n')
-            i++;
+        i++;
     }
     return (0);
 }
