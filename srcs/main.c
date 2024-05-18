@@ -27,9 +27,12 @@ void	exit_cub(t_cub *cub, char *msg, int status)
 void	init_cub(t_cub *cub)
 {
 	ft_memset(cub, 0, sizeof(t_cub));
-	cub->textures = ft_malloc(sizeof(t_textures), cub);
+	cub->paths = ft_malloc(sizeof(t_paths), cub);
 	cub->map = ft_malloc(sizeof(t_map), cub);
 	cub->player = ft_malloc(sizeof(t_player), cub);
+	cub->ray = ft_malloc(sizeof(t_ray), cub);
+	cub->textures = ft_malloc(sizeof(t_image) * TXT_ARR_SIZE, cub);
+	cub->img = ft_malloc(sizeof(t_image), cub);
 }
 
 /**
@@ -51,10 +54,10 @@ void	check_input(int argc, char **argv)
 
 void	dummy_data(t_cub *cub)
 {
-	cub->textures->no_path = ft_strdup("./textures/no_texture.xpm");
-	cub->textures->so_path = ft_strdup("./textures/so_texture.xpm");
-	cub->textures->we_path = ft_strdup("./textures/we_texture.xpm");
-	cub->textures->ea_path = ft_strdup("./textures/ea_texture.xpm");
+	cub->paths->no_path = ft_strdup("./textures/no_texture.xpm");
+	cub->paths->so_path = ft_strdup("./textures/so_texture.xpm");
+	cub->paths->we_path = ft_strdup("./textures/we_texture.xpm");
+	cub->paths->ea_path = ft_strdup("./textures/ea_texture.xpm");
 	cub->map->floor.r = 220;
 	cub->map->floor.g = 100;
 	cub->map->floor.b = 0;
@@ -66,15 +69,15 @@ void	dummy_data(t_cub *cub)
 	cub->map->map_arr = ft_malloc(cub->map->height * sizeof(char *), cub);
 	cub->map->map_arr[0] = ft_strdup("1111111111111111111111111\n");
 	cub->map->map_arr[1] = ft_strdup("1000000000000000000100001\n");
-	cub->map->map_arr[2] = ft_strdup("1001000000000N00000000001\n");
+	cub->map->map_arr[2] = ft_strdup("1001000000000000000000001\n");
 	cub->map->map_arr[3] = ft_strdup("1001000000000000001000001\n");
-	cub->map->map_arr[4] = ft_strdup("1001000000000000001000001\n");
+	cub->map->map_arr[4] = ft_strdup("1001000000000N00001000001\n");
 	cub->map->map_arr[5] = ft_strdup("1001000000100000001000001\n");
 	cub->map->map_arr[6] = ft_strdup("1001000000000000001000001\n");
 	cub->map->map_arr[7] = ft_strdup("1001000000001000001000001\n");
 	cub->map->map_arr[8] = ft_strdup("1111111111111111111111111\n");
 	cub->map->initial.x = 13;
-	cub->map->initial.y = 2;
+	cub->map->initial.y = 4;
 	cub->map->ply_type = 'N';
 }
 

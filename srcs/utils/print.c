@@ -31,10 +31,10 @@ void	print_map(t_map *map)
 */
 void	print_cub(t_cub *cub)
 {
-	ft_dprintf(STDOUT_FILENO, "NO: %s\n", cub->textures->no_path);
-	ft_dprintf(STDOUT_FILENO, "SO: %s\n", cub->textures->so_path);
-	ft_dprintf(STDOUT_FILENO, "WE: %s\n", cub->textures->we_path);
-	ft_dprintf(STDOUT_FILENO, "EA: %s\n", cub->textures->ea_path);
+	ft_dprintf(STDOUT_FILENO, "NO: %s\n", cub->paths->no_path);
+	ft_dprintf(STDOUT_FILENO, "SO: %s\n", cub->paths->so_path);
+	ft_dprintf(STDOUT_FILENO, "WE: %s\n", cub->paths->we_path);
+	ft_dprintf(STDOUT_FILENO, "EA: %s\n", cub->paths->ea_path);
 	write(STDOUT_FILENO, "\n", 1);
 	ft_dprintf(STDOUT_FILENO, "Floor color -> R: %d, G: %d, B: %d\n",
 		cub->map->floor.r, cub->map->floor.g, cub->map->floor.b);

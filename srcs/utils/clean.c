@@ -20,7 +20,7 @@ void	free_ptr(void *ptr)
 
 void	clean_cub(t_cub *cub)
 {
-	free_ptr(cub->textures);
+	free_ptr(cub->paths);
 	free_ptr(cub->map);
 	free_ptr(cub->player);
 }

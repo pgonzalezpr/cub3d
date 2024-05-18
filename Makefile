@@ -2,7 +2,8 @@ NAME = cub3d
 
 SRCS = ./srcs/main.c ./srcs/utils/clean.c ./srcs/utils/utils.c ./srcs/utils/print.c \
 		./srcs/parsing/parse_main.c ./srcs/graphics/start.c  ./srcs/graphics/handlers.c \
-		./srcs/graphics/movements.c
+		./srcs/graphics/movements.c ./srcs/graphics/raycasting.c ./srcs/graphics/render.c \
+		./srcs/utils/raycast_utils.c ./srcs/utils/render_utils.c
 			
 INCLUDE = ./include/cub3d.h ${LIBFT_DIR}/libft.h ${MINILIBX_DIR}/mlx.h
 
@@ -16,7 +17,7 @@ LIBRARIES = -lft -lmlx -lm -framework OpenGL -framework AppKit
 endif
 ifeq ($(UNAME), Linux)
 MINILIBX_DIR = minilibx_linux
-LIBRARIES = -lft -lmlx -lX11 -lXext
+LIBRARIES = -lft -lmlx -lX11 -lXext -lm
 endif
 
 CC = gcc

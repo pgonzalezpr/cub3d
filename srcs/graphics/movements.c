@@ -15,18 +15,9 @@
 void	rotate_player(t_cub *cub, int code)
 {
 	if (code == ROT_RIGHT_CODE)
-	{
-		cub->player->angle += ROT_SPEED;
-		if (cub->player->angle > 2 * PI)
-			cub->player->angle -= 2 * PI;
-	}
+		cub->player->angle = normalize_angle(cub->player->angle + ROT_SPEED);
 	if (code == ROT_LEFT_CODE)
-	{
-		cub->player->angle -= ROT_SPEED;
-		if (cub->player->angle < 0)
-			cub->player->angle += 2 * PI;
-	}
-	printf("new angle: %f\n", cub->player->angle);
+		cub->player->angle = normalize_angle(cub->player->angle - ROT_SPEED);
 }
 
 void	move_player(t_cub *cub, double x_delta, double y_delta)
@@ -48,7 +39,6 @@ void	move_player(t_cub *cub, double x_delta, double y_delta)
 	{
 		cub->player->pos_pix.x = next_x;
 		cub->player->pos_pix.y = next_y;
-		printf("new x: %d, new_y: %d\n", next_map_x, next_map_y);
 	}
 }
 
