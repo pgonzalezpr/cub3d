@@ -157,7 +157,6 @@ typedef struct s_map
 	t_color		ceiling;
 	t_point		initial;
 	char		**map_arr;
-	int			width;
 	int			height;
 	char		ply_type;
 }				t_map;

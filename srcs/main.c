@@ -65,7 +65,6 @@ void	dummy_data(t_cub *cub)
 	cub->map->ceiling.g = 30;
 	cub->map->ceiling.b = 0;
 	cub->map->height = 9;
-	cub->map->width = 25;
 	cub->map->map_arr = ft_malloc(cub->map->height * sizeof(char *), cub);
 	cub->map->map_arr[0] = ft_strdup("1111111111111111111111111\n");
 	cub->map->map_arr[1] = ft_strdup("1000000000000000000100001\n");
