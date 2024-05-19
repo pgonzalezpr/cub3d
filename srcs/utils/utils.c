@@ -12,6 +12,12 @@
 
 #include "cub3d.h"
 
+void	free_ptr(void *ptr)
+{
+	if (ptr)
+		free(ptr);
+}
+
 void	*ft_malloc(size_t bytes, t_cub *cub)
 {
 	void	*ptr;

@@ -3,8 +3,20 @@
 void	render_floor_and_ceiling(t_cub *cub, double upper_pixel,
 		double bottom_pixel)
 {
-	if (cub && upper_pixel && bottom_pixel)
-		return ;
+	int	pixel;
+
+	pixel =  bottom_pixel;
+	while (pixel < W_HEIGHT)
+	{
+		put_pixel(cub, cub->ray->index, pixel, cub->map->floor.color);
+		pixel++;
+	}
+	pixel = 0;
+	while (pixel < upper_pixel)
+	{
+		put_pixel(cub, cub->ray->index, pixel, cub->map->ceiling.color);
+		pixel++;
+	}
 }
 
 void	render_wall(t_cub *cub, int upper_pixel, int bottom_pixel,
@@ -49,5 +61,5 @@ void	render(t_cub *cub)
 	if (bottom_pixel > W_HEIGHT)
 		bottom_pixel = W_HEIGHT;
 	render_wall(cub, upper_pixel, bottom_pixel, wall_height);
-	//render_floor_and_ceiling(cub, upper_pixel, bottom_pixel);
+	render_floor_and_ceiling(cub, upper_pixel, bottom_pixel);
 }

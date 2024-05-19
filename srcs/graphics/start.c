@@ -73,6 +73,10 @@ void	init_textures(t_cub *cub)
 	open_texture(cub, SO_TXT_IDX, cub->paths->so_path);
 	open_texture(cub, EA_TXT_IDX, cub->paths->ea_path);
 	open_texture(cub, WE_TXT_IDX, cub->paths->we_path);
+	cub->map->ceiling.color = get_rgb_color(cub->map->ceiling.r,
+		cub->map->ceiling.g, cub->map->ceiling.b, 255);
+	cub->map->floor.color = get_rgb_color(cub->map->floor.r,
+		cub->map->floor.g, cub->map->floor.b, 255);
 }
 
 void	start_cub(t_cub *cub)

@@ -99,6 +99,7 @@ typedef struct s_color
 	int			r;
 	int			g;
 	int			b;
+	int			color;
 }				t_color;
 
 typedef struct s_move
@@ -195,7 +196,7 @@ void			put_pixel(t_cub *cub, int pixel_x, int pixel_y,
 					int pixel_color);
 t_image			*get_texture(t_cub *cub);
 int				get_x_offset(t_image *texture, t_cub *cub);
-int				reverse_bytes(int color);
+int				get_rgb_color(int r, int g, int b, int a);
 
 /*=============================UTILS============================*/
 
@@ -205,5 +206,6 @@ float			normalize_angle(float angle);
 void			clean_cub(t_cub *cub);
 void			print_cub(t_cub *cub);
 void			exit_cub(t_cub *cub, char *msg, int status);
+void			free_ptr(void *ptr);
 
 #endif

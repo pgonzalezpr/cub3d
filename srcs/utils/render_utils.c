@@ -1,5 +1,10 @@
 #include "cub3d.h"
 
+int	get_rgb_color(int r, int g, int b, int a)
+{
+	return (r << 24 | g << 16 | b << 8 | a << 0);
+}
+
 int	get_x_offset(t_image *texture, t_cub *cub)
 {
 	if (cub->ray->is_horz)
@@ -55,15 +60,3 @@ t_image	*get_texture(t_cub *cub)
 	}
 }
 
-int	reverse_bytes(int color)
-{
-	unsigned int    bytes;
-
-	bytes = 0;
-	bytes = 0;
-	bytes |= (color & 0xFF) << 24;
-	bytes |= (color & 0xFF00) << 8;
-	bytes |= (color & 0xFF0000) >> 8;
-	bytes |= (color & 0xFF000000) >> 24;
-	return (bytes);
-}
