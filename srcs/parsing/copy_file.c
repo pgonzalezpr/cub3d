@@ -6,7 +6,7 @@
 /*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 11:27:03 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/18 15:47:12 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/19 18:23:30 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,22 @@ int	accepted(char *content)
 	return (0);
 }
 
+int	check_first_params(char *content, int *i, int *in_map)
+{
+	while (content[*i] && is_whitespace(content[*i]))
+        *i += 1;
+    while (content[*i] && accepted(&content[*i]))
+	{
+        while (content[*i] && content[*i] != '\n')
+            *i += 1;
+        if (content[*i] == '\n')
+            *i += 1;
+    }
+	if (!*in_map && content[*i] && !ft_strchr(MAP_CHAR, content[*i]) && !is_whitespace(content[*i]))
+        return (1);
+	return (0);
+}
+
 int validate_single_map(char *content) 
 {
     int i;
@@ -42,17 +58,8 @@ int validate_single_map(char *content)
 	in_map = 0;
     while (content[i])
 	{
-		while (content[i] && is_whitespace(content[i]))
-            i++;
-        while (content[i] && accepted(&content[i]))
-		{
-            while (content[i] && content[i] != '\n')
-                i++;
-            if (content[i] == '\n')
-                i++;
-        }
-		if (!in_map && content[i] && !ft_strchr(MAP_CHAR, content[i]) && !is_whitespace(content[i]))
-            return (1);
+		if (check_first_params(content, &i, &in_map))
+			return (1);
         if (ft_strchr(MAP_CHAR, content[i])) 
 		{
             if (in_map) 
