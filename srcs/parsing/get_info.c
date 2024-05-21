@@ -6,14 +6,11 @@
 /*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 12:34:57 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/16 15:28:08 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/20 17:09:15 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// MAKE THE FUNCTIONS RETURN A NUMBER AND THEN IN MAIN PARS FREE AND EXIT
-//craete a function for error cases to free everuthing etc and check textures extensions and map
 
 void	check_params(char **file, t_parse *info)
 {
@@ -114,4 +111,5 @@ void	get_matrix(t_parse *info, t_cub	*cub)
 		free_matrix(file, 0);
 		exit_cub(cub, "Invalid parameters\n", EXIT_FAILURE);
 	}
+	get_map(info, cub, file);
 }

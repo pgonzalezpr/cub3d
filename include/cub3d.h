@@ -6,7 +6,7 @@
 /*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:34:53 by pedro-go          #+#    #+#             */
-/*   Updated: 2024/05/15 19:54:47 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/20 17:09:39 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define FORMAT_ERR "Invalid file\n"
 # define MALLOC_ERR "Memory allocation error\n"
 # define FILE_FORMAT ".cub"
+# define MAP_CHAR "10NSEW" 
 
 /*=============================STRUCTS============================*/
 
@@ -103,6 +104,8 @@ int				get_colours(char *colour, t_cub *cub);
 void			copy_error(t_parse *info, t_cub *cub);
 int				free_matrix(char **matrix, int err);
 char			*ft_strjoin1(char *s1, char *s2);
+int 			is_whitespace(char c);
+void    		get_map(t_parse *info, t_cub *cub, char **file);
 
 /*=============================UTILS============================*/
 

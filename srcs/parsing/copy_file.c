@@ -6,13 +6,11 @@
 /*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 11:27:03 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/19 18:23:30 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/19 19:00:55 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-#define MAP_CHAR "10NSEW" 
 
 int is_whitespace(char c)
 {
@@ -68,14 +66,16 @@ int validate_single_map(char *content)
             while (content[i]) 
 			{
 				if (content[i] == '\n' && content[i + 1] && content[i + 1] == '\n')
-					break;
+					return (1);
                 if (!ft_strchr(MAP_CHAR, content[i]) && !is_whitespace(content[i]))
-                    break;
+                    return (1);
                 i++;
             }
 		}
         i++;
     }
+	if (!in_map)
+		return (1);
     return (0);
 }
 
