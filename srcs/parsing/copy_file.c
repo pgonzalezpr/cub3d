@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   copy_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
+/*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 11:27:03 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/19 19:00:55 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/21 11:38:39 by adanylev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int validate_single_map(char *content)
 			return (1);
         if (ft_strchr(MAP_CHAR, content[i])) 
 		{
-            if (in_map) 
+            if (in_map)
 				return (1);
             in_map = 1;
             while (content[i]) 
@@ -72,12 +72,12 @@ int validate_single_map(char *content)
                 i++;
             }
 		}
-        i++;
     }
 	if (!in_map)
 		return (1);
     return (0);
 }
+
 
 void	copy_file(int fd, t_parse *info, t_cub *cub)
 {

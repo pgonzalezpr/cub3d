@@ -1,5 +1,7 @@
 #include "cub3d.h"
 
+//I added \n, otherwise it prints all as one line 
+
 void	print_map(t_map *map)
 {
 	int		r;
@@ -10,6 +12,7 @@ void	print_map(t_map *map)
 	{
 		row = map->map_arr[r];
 		write(STDOUT_FILENO, row, ft_strlen(row));
+		write(1, "\n", 1);
 		r++;
 	}
 }

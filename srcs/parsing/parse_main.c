@@ -6,7 +6,7 @@
 /*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 17:15:02 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/15 15:15:27 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/05/21 13:11:50 by adanylev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 void	init(t_parse *info)
 {
 	info->map_line = NULL;
+	info->map_matrix = NULL;
 	info->player = 0;
 	info->ea = 0;
 	info->we = 0;

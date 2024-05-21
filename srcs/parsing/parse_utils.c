@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
+/*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:56:26 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/15 19:55:49 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/21 13:22:41 by adanylev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int count_lines(char **str) 
+{
+    int i;
+    
+    i = 0;
+    while (str[i])
+        i++;
+    return (i);
+}
 
 int	free_matrix(char **matrix, int err)
 {

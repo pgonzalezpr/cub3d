@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
+/*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 12:34:57 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/20 17:09:15 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/21 11:22:48 by adanylev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ int	get_textures(t_cub *cub, char **file)
 	int		x;
 	int		y;
 
-	x = 0;
-	while (file[x])
+	x = -1;
+	while (file[++x])
 	{
 		y = 0;
 		while (file[x][y] && file[x][y + 1])
@@ -86,13 +86,10 @@ int	get_textures(t_cub *cub, char **file)
 			else if (file[x][y] == 'E' && file[x][y + 1] == 'A') 
 				cub->textures->ea_path = ft_strtrim(file[x], "EA \t");
 			else if (file[x][y] == 'F' || file[x][y] == 'C')
-			{
 				if (get_colours(&file[x][y], cub))
 					return (1);
-			}
 			y++;
 		}
-		x++;
 	}
 	return (0);
 }
