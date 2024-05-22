@@ -26,7 +26,6 @@ int	check_nums(char *str)
 	return (0);
 }
 
-
 void	fill_colours(char **tmp, t_cub *cub, char c)
 {
 	if (c == 'f')
