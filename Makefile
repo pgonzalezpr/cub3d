@@ -32,7 +32,10 @@ DARK_YELLOW =	\033[38;5;143m
 
 MOBJS	= ${SRCS:%.c=%.o}
 SRCS = ./srcs/main.c ./srcs/utils/clean.c ./srcs/utils/utils.c ./srcs/utils/print.c \
-		./srcs/parsing/parse_main.c ./srcs/graphics/start.c  ./srcs/graphics/handlers.c \
+		./srcs/parsing/parse_main.c ./srcs/parsing/parse_utils.c \
+		./srcs/parsing/copy_file.c ./srcs/utils/utils.c ./srcs/utils/print.c \
+		./srcs/parsing/get_info.c ./srcs/parsing/colours.c ./srcs/parsing/map_check.c \
+		./srcs/parsing/map_check1.c ./srcs/graphics/start.c  ./srcs/graphics/handlers.c \
 		./srcs/graphics/movements.c ./srcs/graphics/raycasting.c ./srcs/graphics/render.c \
 		./srcs/utils/raycast_utils.c ./srcs/utils/render_utils.c
 

@@ -6,7 +6,7 @@
 /*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:34:53 by pedro-go          #+#    #+#             */
-/*   Updated: 2024/05/13 13:03:47 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/05/22 14:36:11 by adanylev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define FORMAT_ERR "Invalid file\n"
 # define MALLOC_ERR "Memory allocation error\n"
 # define FILE_FORMAT ".cub"
+# define MAP_CHAR "10NSEW" 
 # define WIN_ERR "Error opening window\n"
 # define TXT_ERR "Error opening texture\n"
 
@@ -169,10 +170,36 @@ typedef struct s_cub
 	mlx_t		*mlx_ptr;
 }				t_cub;
 
+
+typedef	struct s_parse
+{
+	char	*map_line;
+	char	**map_matrix;
+	int		player;
+	int		no;
+	int		so;
+	int		we;
+	int		ea;
+	int		f;
+	int		c;
+}				t_parse;
+
 /*=============================PARSING============================*/
 
 void			parse_cub(char *filename, t_cub *cub);
-//void			copy_file(int fd, t_parse *info);
+void			copy_file(int fd, t_parse *info, t_cub *cub);
+void			init(t_parse *info);
+void			get_matrix(t_parse *info, t_cub	*cub);
+int				get_colours(char *colour, t_cub *cub);
+void			copy_error(t_parse *info, t_cub *cub);
+int				free_matrix(char **matrix, int err);
+char			*ft_strjoin1(char *s1, char *s2);
+int 			is_whitespace(char c);
+void    		get_map(t_parse *info, t_cub *cub, char **file);
+int				count_lines(char **str);
+int				check_player(t_parse *info, t_cub *cub);
+int				check_walls(t_parse *info);
+void			ft_copy(char *dst, char *src);
 
 /*=============================GRAPHICS============================*/
 
