@@ -85,7 +85,7 @@ int	main(int argc, char **argv)
 
 	check_input(argc, argv);
 	init_cub(&cub);
-	parse_cub(argv[1], &cub);
+	//parse_cub(argv[1], &cub);
 	dummy_data(&cub);
 	start_cub(&cub);
 	exit_cub(&cub, NULL, EXIT_SUCCESS);

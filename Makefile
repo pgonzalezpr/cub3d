@@ -1,5 +1,5 @@
 NAME	= cub3d
-LIBFT	= libft/
+LIBFT	= libft
 
 MLX = MLX42/libmlx42.a
 FLAG_MLX = -framework Cocoa -framework OpenGL -framework IOKit -lglfw
@@ -31,7 +31,7 @@ DARK_GREEN =	\033[38;2;75;179;82m
 DARK_YELLOW =	\033[38;5;143m
 
 MOBJS	= ${SRCS:%.c=%.o}
-SRCS = ./srcs/main.c ./srcs/utils/clean.c ./srcs/utils/utils.c ./srcs/utils/print.c \
+SRCS = ./srcs/main.c ./srcs/utils/clean.c \
 		./srcs/parsing/parse_main.c ./srcs/parsing/parse_utils.c \
 		./srcs/parsing/copy_file.c ./srcs/utils/utils.c ./srcs/utils/print.c \
 		./srcs/parsing/get_info.c ./srcs/parsing/colours.c ./srcs/parsing/map_check.c \
@@ -43,7 +43,7 @@ DEPS = $(addsuffix .d, $(basename $(SRCS)))
 
 all: $(NAME)
 
-$(NAME): $(MOBJS) ${LIBFT}/libft.a ${MLX} ${HEADERS}
+$(NAME): $(MOBJS) ${MLX} ${HEADERS}
 	@make -s -C $(LIBFT)
 	@$(CC) $(CFLAGS) $(FLAG_MLX) $(MOBJS) ${LIBFT}/libft.a $(MLX) $(LIB) -o $(NAME)
 	@echo "\n$(RED) Created $(NAME) ✓ $(DEF_COLOR)\n"

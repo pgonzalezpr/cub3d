@@ -39,8 +39,6 @@ void	init(t_parse *info)
 
 void	parse_cub(char *filename, t_cub *cub)
 {
-<<<<<<< HEAD
-=======
 	t_parse	info;
 	int		fd;
 
@@ -49,7 +47,6 @@ void	parse_cub(char *filename, t_cub *cub)
 		exit_cub(cub, FORMAT_ERR, EXIT_FAILURE);
 	init(&info);
 	copy_file(fd, &info, cub);
->>>>>>> parsing
 	if (filename && cub)
 		return ;
 }

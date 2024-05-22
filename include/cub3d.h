@@ -34,49 +34,13 @@
 
 /*==========================NUMERIC CONSTANTS============================*/
 
-# define W_WIDTH 1280
-# define W_HEIGHT 720
+# define W_WIDTH 1920
+# define W_HEIGHT 1080
 # define TILE_SIZE 40
 # define PI 3.14159265358979323846
 # define FOV 60
 # define MOV_SPEED 4
 # define ROT_SPEED 0.07
-# define TXT_ARR_SIZE 4
-# define NO_TXT_IDX 0
-# define SO_TXT_IDX 1
-# define EA_TXT_IDX 2
-# define WE_TXT_IDX 3
-
-/*==========================EVENTS============================*/
-
-# define KEY_PRESS_EVENT 2
-# define KEY_RELEASE_EVENT 3
-# define EXIT_EVENT 17
-
-/*==========================KEY CODES LINUX============================*/
-
-# define ESC_KEY_CODE 65307
-# define W_KEY_CODE 119
-# define A_KEY_CODE 97
-# define S_KEY_CODE 115
-# define D_KEY_CODE 100
-# define LEFT_KEY_CODE 65361
-# define RIGHT_KEY_CODE 65363
-
-/*==========================KEY CODES MAC============================*/
-
-/*
-# define PRESS_MASK 0
-# define RELEASE_MASK 0
-# define EXIT_MASK 0
-# define ESC_KEY_CODE 53
-# define W_KEY_CODE 13
-# define A_KEY_CODE 0
-# define S_KEY_CODE 1
-# define D_KEY_CODE 2
-# define LEFT_KEY_CODE 123
-# define RIGHT_KEY_CODE 124
-*/
 
 /*==========================MOVEMENTS============================*/
 
@@ -156,6 +120,7 @@ typedef struct s_map
 	t_point		initial;
 	char		**map_arr;
 	int			height;
+	int			width;
 	char		ply_type;
 }				t_map;
 
