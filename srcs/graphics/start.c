@@ -12,25 +12,16 @@
 
 #include "cub3d.h"
 
-int	render_cub(void *cub)
+void	render_cub(void *cub)
 {
 	t_cub	*cub_p;
 
 	cub_p = (t_cub *)cub;
-	mlx_destroy_image(cub_p->mlx_ptr, cub_p->img->ptr);
-	cub_p->img->ptr = mlx_new_image(cub_p->mlx_ptr, W_WIDTH, W_HEIGHT);
-	cub_p->img->width = W_WIDTH;
-	cub_p->img->height = W_HEIGHT;
-	cub_p->img->pixels = mlx_get_data_addr(cub_p->img->ptr,
-			&cub_p->img->bits_per_pixel, &cub_p->img->size_line,
-			&cub_p->img->endian);
-	if (!cub_p->img->pixels)
-		exit_cub(cub, WIN_ERR, EXIT_FAILURE);
+	mlx_delete_image(cub_p->mlx_ptr, cub_p->img);
+	cub_p->img = mlx_new_image(cub_p->mlx_ptr, W_WIDTH, W_HEIGHT);
 	hook_cub(cub);
 	raycast_cub(cub);
-	mlx_put_image_to_window(cub_p->mlx_ptr, cub_p->win_ptr,
-		cub_p->img->ptr, 0, 0);
-	return (1);
+	mlx_image_to_window(cub_p->mlx_ptr, cub_p->img, 0, 0);
 }
 
 void	init_player(t_cub *cub)
@@ -48,51 +39,32 @@ void	init_player(t_cub *cub)
 	cub->player->fov = (FOV * PI) / 180;
 }
 
-void	open_texture(t_cub *cub, int idx, char *path)
-{
-	t_image	*textures;
-	int		w;
-	int		h;
-
-	textures = cub->textures;
-	textures[idx].ptr = mlx_xpm_file_to_image(cub->mlx_ptr, path, &w, &h);
-	if (!textures[idx].ptr)
-		exit_cub(cub, TXT_ERR, EXIT_FAILURE);
-	textures[idx].width = w;
-	textures[idx].height = h;
-	textures[idx].pixels = mlx_get_data_addr(textures[idx].ptr,
-			&textures[idx].bits_per_pixel, &textures[idx].size_line,
-			&textures[idx].endian);
-	if (!textures[idx].pixels)
-		exit_cub(cub, TXT_ERR, EXIT_FAILURE);
-}
-
 void	init_textures(t_cub *cub)
 {
-	open_texture(cub, NO_TXT_IDX, cub->paths->no_path);
-	open_texture(cub, SO_TXT_IDX, cub->paths->so_path);
-	open_texture(cub, EA_TXT_IDX, cub->paths->ea_path);
-	open_texture(cub, WE_TXT_IDX, cub->paths->we_path);
+	cub->textures->no = mlx_load_png(cub->paths->no_path);
+	cub->textures->so = mlx_load_png(cub->paths->so_path);
+	cub->textures->ea = mlx_load_png(cub->paths->ea_path);
+	cub->textures->we = mlx_load_png(cub->paths->we_path);
+	if (!cub->textures->no || !cub->textures->so || !cub->textures->ea
+		|| !cub->textures->we)
+		exit_cub(cub, TXT_ERR, EXIT_FAILURE);
 	cub->map->ceiling.color = get_rgb_color(cub->map->ceiling.r,
-		cub->map->ceiling.g, cub->map->ceiling.b, 255);
+			cub->map->ceiling.g, cub->map->ceiling.b, 255);
 	cub->map->floor.color = get_rgb_color(cub->map->floor.r,
-		cub->map->floor.g, cub->map->floor.b, 255);
+			cub->map->floor.g, cub->map->floor.b, 255);
 }
 
 void	start_cub(t_cub *cub)
 {
-	cub->mlx_ptr = mlx_init();
+	cub->mlx_ptr = mlx_init(W_WIDTH, W_HEIGHT, "cub3d", 1);
 	if (!cub->mlx_ptr)
 		exit_cub(cub, WIN_ERR, EXIT_FAILURE);
-	cub->win_ptr = mlx_new_window(cub->mlx_ptr, W_WIDTH, W_HEIGHT, "cub3d");
-	cub->img->ptr = mlx_new_image(cub->mlx_ptr, W_WIDTH, W_HEIGHT);
-	if (!cub->win_ptr || !cub->img->ptr)
+	cub->img = mlx_new_image(cub->mlx_ptr, W_WIDTH, W_HEIGHT);
+	if (!cub->img)
 		exit_cub(cub, WIN_ERR, EXIT_FAILURE);
 	init_player(cub);
 	init_textures(cub);
 	mlx_loop_hook(cub->mlx_ptr, &render_cub, cub);
-	mlx_hook(cub->win_ptr, KEY_PRESS_EVENT, 1L << 0, &key_press, cub);
-	mlx_hook(cub->win_ptr, KEY_RELEASE_EVENT, 1L << 1, &key_release, cub);
-	mlx_hook(cub->win_ptr, EXIT_EVENT, 1L << 17, &quit_cub, cub);
+	mlx_key_hook(cub->mlx_ptr, &key_handler, cub);
 	mlx_loop(cub->mlx_ptr);
 }

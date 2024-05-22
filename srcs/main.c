@@ -31,8 +31,7 @@ void	init_cub(t_cub *cub)
 	cub->map = ft_malloc(sizeof(t_map), cub);
 	cub->player = ft_malloc(sizeof(t_player), cub);
 	cub->ray = ft_malloc(sizeof(t_ray), cub);
-	cub->textures = ft_malloc(sizeof(t_image) * TXT_ARR_SIZE, cub);
-	cub->img = ft_malloc(sizeof(t_image), cub);
+	cub->textures = ft_malloc(sizeof(t_textures), cub);
 }
 
 /**
@@ -54,10 +53,10 @@ void	check_input(int argc, char **argv)
 
 void	dummy_data(t_cub *cub)
 {
-	cub->paths->no_path = ft_strdup("./textures/no_texture.xpm");
-	cub->paths->so_path = ft_strdup("./textures/so_texture.xpm");
-	cub->paths->we_path = ft_strdup("./textures/we_texture.xpm");
-	cub->paths->ea_path = ft_strdup("./textures/ea_texture.xpm");
+	cub->paths->no_path = ft_strdup("./textures/no_texture.png");
+	cub->paths->so_path = ft_strdup("./textures/so_texture.png");
+	cub->paths->we_path = ft_strdup("./textures/we_texture.png");
+	cub->paths->ea_path = ft_strdup("./textures/ea_texture.png");
 	cub->map->floor.r = 220;
 	cub->map->floor.g = 100;
 	cub->map->floor.b = 0;

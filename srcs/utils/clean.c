@@ -12,22 +12,12 @@
 
 #include "cub3d.h"
 
-void	free_image(t_cub *cub, t_image *img)
+void	clean_textures(t_cub *cub)
 {
-	if (!img)
-		return ;
-	if (cub->mlx_ptr && img->ptr)
-		mlx_destroy_image(cub->mlx_ptr, img->ptr);
-}
-
-void	clean_images(t_cub *cub)
-{
-	free_image(cub, cub->img);
-	free_ptr(cub->img);
-	free_image(cub, &cub->textures[NO_TXT_IDX]);
-	free_image(cub, &cub->textures[SO_TXT_IDX]);
-	free_image(cub, &cub->textures[EA_TXT_IDX]);
-	free_image(cub, &cub->textures[WE_TXT_IDX]);
+	mlx_delete_texture(cub->textures->no);
+	mlx_delete_texture(cub->textures->so);
+	mlx_delete_texture(cub->textures->ea);
+	mlx_delete_texture(cub->textures->we);
 	free_ptr(cub->textures);
 }
 
@@ -65,8 +55,9 @@ void	clean_cub(t_cub *cub)
 {
 	free_paths(cub->paths);
 	free_map(cub->map);
-	clean_images(cub);
 	free_ptr(cub->ray);
 	free_ptr(cub->player);
-	mlx_destroy_window(cub->mlx_ptr, cub->win_ptr);
+	clean_textures(cub);
+	mlx_delete_image(cub->mlx_ptr, cub->img);
+	mlx_close_window(cub->mlx_ptr);
 }

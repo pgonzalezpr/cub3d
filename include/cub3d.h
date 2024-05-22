@@ -17,7 +17,7 @@
 /*==========================HEADER FILES============================*/
 
 # include "libft.h"
-# include "mlx.h"
+# include "../MLX42/MLX42.h"
 # include <fcntl.h>
 # include <math.h>
 # include <string.h>
@@ -128,16 +128,13 @@ typedef struct s_paths
 	char		*ea_path;
 }				t_paths;
 
-typedef struct s_image
+typedef struct s_textures
 {
-	void		*ptr;
-	char		*pixels;
-	int			bits_per_pixel;
-	int			size_line;
-	int			endian;
-	int			width;
-	int			height;
-}				t_image;
+	mlx_texture_t	*no;
+	mlx_texture_t	*so;
+	mlx_texture_t	*ea;
+	mlx_texture_t	*we;
+}				t_textures;
 
 typedef struct s_ray
 {
@@ -164,13 +161,12 @@ typedef struct s_map
 typedef struct s_cub
 {
 	t_paths		*paths;
-	t_image		*textures;
+	t_textures	*textures;
 	t_map		*map;
 	t_player	*player;
 	t_ray		*ray;
-	t_image		*img;
-	void		*mlx_ptr;
-	void		*win_ptr;
+	mlx_image_t	*img;
+	mlx_t		*mlx_ptr;
 }				t_cub;
 
 /*=============================PARSING============================*/
@@ -181,8 +177,7 @@ void			parse_cub(char *filename, t_cub *cub);
 /*=============================GRAPHICS============================*/
 
 void			start_cub(t_cub *cub);
-int				key_press(int keycode, void *cub);
-int				key_release(int keycode, void *cub);
+void			key_handler(mlx_key_data_t keydata, void *cub);
 int				quit_cub(void *cub);
 void			hook_cub(t_cub *cub);
 void			raycast_cub(t_cub *cub);
@@ -193,9 +188,10 @@ int				check_limits(float angle, float *inter, float *step,
 int				check_circle(float angle, int is_hrz);
 void			put_pixel(t_cub *cub, int pixel_x, int pixel_y,
 					int pixel_color);
-t_image			*get_texture(t_cub *cub);
-int				get_x_offset(t_image *texture, t_cub *cub);
+mlx_texture_t	*get_texture(t_cub *cub);
+int				get_x_offset(mlx_texture_t *texture, t_cub *cub);
 int				get_rgb_color(int r, int g, int b, int a);
+int				reverse_bytes(int c);
 
 /*=============================UTILS============================*/
 

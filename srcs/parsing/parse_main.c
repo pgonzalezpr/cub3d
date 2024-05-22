@@ -27,7 +27,6 @@
 
 void	parse_cub(char *filename, t_cub *cub)
 {
-	//copy_file(fd, &info);
 	if (filename && cub)
 		return ;
 }

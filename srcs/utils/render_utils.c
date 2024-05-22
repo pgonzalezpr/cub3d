@@ -1,62 +1,69 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pedro-go <pedro-go@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/22 18:02:12 by pedro-go          #+#    #+#             */
+/*   Updated: 2024/05/22 18:02:13 by pedro-go         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
+
+int	reverse_bytes(int c)
+{
+	unsigned int	b;
+
+	b = 0;
+	b |= (c & 0xFF) << 24;
+	b |= (c & 0xFF00) << 8;
+	b |= (c & 0xFF0000) >> 8;
+	b |= (c & 0xFF000000) >> 24;
+	return (b);
+}
 
 int	get_rgb_color(int r, int g, int b, int a)
 {
 	return (r << 24 | g << 16 | b << 8 | a << 0);
 }
 
-int	get_x_offset(t_image *texture, t_cub *cub)
+int	get_x_offset(mlx_texture_t *texture, t_cub *cub)
 {
 	if (cub->ray->is_horz)
 		return ((int)fmodf((cub->ray->x_horz * (texture->width / TILE_SIZE)),
-        texture->width));
+				texture->width));
 	return ((int)fmodf((cub->ray->y_vert * (texture->width / TILE_SIZE)),
-        texture->width));
+			texture->width));
 }
 
 void	put_pixel(t_cub *cub, int pixel_x, int pixel_y, int pixel_color)
 {
-	t_image	*img;
-	char	*pixel;
-	int		pixel_index;
-
-	img = cub->img;
-	if (pixel_x < 0 || pixel_x >= img->width || pixel_y < 0
-		|| pixel_y >= img->height)
+	if (pixel_x < 0)
 		return ;
-	pixel_index = (pixel_y * img->size_line) + (pixel_x * (img->bits_per_pixel
-				/ 8));
-	pixel = img->pixels + pixel_index;
-	if (img->endian == 1)
-	{
-		pixel[0] = (pixel_color >> 24) & 0xFF;
-		pixel[1] = (pixel_color >> 16) & 0xFF;
-		pixel[2] = (pixel_color >> 8) & 0xFF;
-		pixel[3] = pixel_color & 0xFF;
-	}
-	else
-	{
-		pixel[0] = pixel_color & 0xFF;
-		pixel[1] = (pixel_color >> 8) & 0xFF;
-		pixel[2] = (pixel_color >> 16) & 0xFF;
-		pixel[3] = (pixel_color >> 24) & 0xFF;
-	}
+	else if (pixel_x >= W_WIDTH)
+		return ;
+	if (pixel_y < 0)
+		return ;
+	else if (pixel_y >= W_HEIGHT)
+		return ;
+	mlx_put_pixel(cub->img, pixel_x, pixel_y, pixel_color);
 }
 
-t_image	*get_texture(t_cub *cub)
+mlx_texture_t	*get_texture(t_cub *cub)
 {
 	cub->ray->angle = normalize_angle(cub->ray->angle);
 	if (cub->ray->is_horz)
 	{
 		if (cub->ray->angle > 0 && cub->ray->angle < PI)
-			return (&cub->textures[SO_TXT_IDX]);
-		return (&cub->textures[NO_TXT_IDX]);
+			return (cub->textures->so);
+		return (cub->textures->no);
 	}
 	else
 	{
 		if (cub->ray->angle > PI / 2 && cub->ray->angle < 3 * PI / 2)
-			return (&cub->textures[EA_TXT_IDX]);
-		return (&cub->textures[WE_TXT_IDX]);
+			return (cub->textures->ea);
+		return (cub->textures->we);
 	}
 }
-

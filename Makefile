@@ -1,28 +1,14 @@
-NAME = cub3d
+NAME	= cub3d
+LIBFT	= libft/
 
-SRCS = ./srcs/main.c ./srcs/utils/clean.c ./srcs/utils/utils.c ./srcs/utils/print.c \
-		./srcs/parsing/parse_main.c ./srcs/graphics/start.c  ./srcs/graphics/handlers.c \
-		./srcs/graphics/movements.c ./srcs/graphics/raycasting.c ./srcs/graphics/render.c \
-		./srcs/utils/raycast_utils.c ./srcs/utils/render_utils.c
-			
-INCLUDE = ./include/cub3d.h ${LIBFT_DIR}/libft.h ${MINILIBX_DIR}/mlx.h
+MLX = MLX42/libmlx42.a
+FLAG_MLX = -framework Cocoa -framework OpenGL -framework IOKit -lglfw
+INCLUDE = -I/Users/${USER}/.brew/Cellar/glfw/3.4/include/GLFW
+LIB = -L/Users/${USER}/.brew/Cellar/glfw/3.4/lib
+HEADERS = ./include/cub3d.h ./include/libft.h ./include/MLX42.h
 
-LIBFT_DIR = libft
-
-UNAME := $(shell uname)
-
-ifeq ($(UNAME), Darwin)
-MINILIBX_DIR = minilibx_macos
-LIBRARIES = -lft -lmlx -lm -framework OpenGL -framework AppKit
-endif
-ifeq ($(UNAME), Linux)
-MINILIBX_DIR = minilibx_linux
-LIBRARIES = -lft -lmlx -lX11 -lXext -lm
-endif
-
-CC = gcc
-RM = rm -f
-CFLAGS = -Wall -Wextra -Werror -MMD
+CC		= gcc
+CFLAGS	= -Wall -Werror -Wextra -O3 -ffast-math -MMD
 
 DEL_LINE =		\033[2K
 ITALIC =		\033[3m
@@ -44,43 +30,37 @@ MID_GRAY =		\033[38;5;245m
 DARK_GREEN =	\033[38;2;75;179;82m
 DARK_YELLOW =	\033[38;5;143m
 
-%.o: %.c
-	@${CC} ${CFLAGS} -I./include -c $< -o $@
-	@echo "$(BROWN)Compiling   ${MAGENTA}→   $(CYAN)$< $(DEF_COLOR)"
+MOBJS	= ${SRCS:%.c=%.o}
+SRCS = ./srcs/main.c ./srcs/utils/clean.c ./srcs/utils/utils.c ./srcs/utils/print.c \
+		./srcs/parsing/parse_main.c ./srcs/graphics/start.c  ./srcs/graphics/handlers.c \
+		./srcs/graphics/movements.c ./srcs/graphics/raycasting.c ./srcs/graphics/render.c \
+		./srcs/utils/raycast_utils.c ./srcs/utils/render_utils.c
 
-OBJS = ${SRCS:.c=.o}
 DEPS = $(addsuffix .d, $(basename $(SRCS)))
 
-all: ${NAME}
+all: $(NAME)
 
-${NAME}: ${OBJS} ${LIBFT_DIR}/libft.a ${MINILIBX_DIR}/libmlx.a $(INCLUDE) Makefile
-	@${CC} ${OBJS} -I./include -L${LIBFT_DIR} -L${MINILIBX_DIR} ${LIBRARIES} -o ${NAME}
+$(NAME): $(MOBJS) ${LIBFT}/libft.a ${MLX} ${HEADERS}
+	@make -s -C $(LIBFT)
+	@$(CC) $(CFLAGS) $(FLAG_MLX) $(MOBJS) ${LIBFT}/libft.a $(MLX) $(LIB) -o $(NAME)
 	@echo "\n$(RED) Created $(NAME) ✓ $(DEF_COLOR)\n"
 
-$(LIBFT_DIR)/libft.a:
-	@make -C $(LIBFT_DIR)
-
-${MINILIBX_DIR}/libmlx.a:
-	@make -C $(MINILIBX_DIR)
+%.o: %.c ./include/cub3d.h
+	$(CC) $(CFLAGS) -I./include $(INCLUDE) -c $< -o $@
+	@echo "$(BROWN)Compiling   ${MAGENTA}→   $(CYAN)$< $(DEF_COLOR)"
 
 -include ${DEPS}
 
 clean:
-	@${RM} ${OBJS}
-	@${RM} ${DEPS}
-	@make clean -C $(LIBFT_DIR)
-	@make clean -C $(MINILIBX_DIR)
+	@make clean -s -C $(LIBFT)
+	@rm -f $(MOBJS)
+	@rm -f ${DEPS}
 	@echo "\n$(DARK_YELLOW) Removed all objects$(DEF_COLOR)\n"
 
-fclean: 
-	@${RM} ${OBJS}
-	@${RM} ${DEPS}
-	@${RM} ${NAME}
-	@make fclean -C $(LIBFT_DIR)
+fclean: clean
+	@make fclean -s -C $(LIBFT)
+	@rm -f $(NAME)
+	@rm -f ${DEPS}
 	@echo "\n$(DARK_YELLOW)Removed all objects and executable$(DEF_COLOR)\n"
 
 re: fclean all
-
-.PHONY: all clean fclean re
-
-	

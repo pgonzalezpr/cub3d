@@ -12,48 +12,51 @@
 
 #include "cub3d.h"
 
-int	key_press(int keycode, void *cub)
+void	key_press(mlx_key_data_t keydata, void *cub)
 {
 	t_cub	*cub_p;
 
 	cub_p = (t_cub *)cub;
-	if (keycode == ESC_KEY_CODE)
-		exit_cub(cub, NULL, EXIT_SUCCESS);
-	if (keycode == W_KEY_CODE)
-		cub_p->player->moves.forw = 1;
-	if (keycode == A_KEY_CODE)
+	if (keydata.key == MLX_KEY_ESCAPE && (keydata.action == MLX_PRESS
+			|| keydata.action == MLX_REPEAT))
+		exit_cub(cub_p, NULL, EXIT_SUCCESS);
+	else if (keydata.key == MLX_KEY_A && (keydata.action == MLX_PRESS))
 		cub_p->player->moves.left = 1;
-	if (keycode == S_KEY_CODE)
-		cub_p->player->moves.backw = 1;
-	if (keycode == D_KEY_CODE)
+	else if (keydata.key == MLX_KEY_D && (keydata.action == MLX_PRESS))
 		cub_p->player->moves.right = 1;
-	if (keycode == LEFT_KEY_CODE)
+	else if (keydata.key == MLX_KEY_S && (keydata.action == MLX_PRESS))
+		cub_p->player->moves.backw = 1;
+	else if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
+		cub_p->player->moves.forw = 1;
+	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
 		cub_p->player->moves.rot_left = 1;
-	if (keycode == RIGHT_KEY_CODE)
+	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
 		cub_p->player->moves.rot_right = 1;
-	return (1);
 }
 
-int	key_release(int keycode, void *cub)
+void	key_release(mlx_key_data_t keydata, void *cub)
 {
 	t_cub	*cub_p;
 
 	cub_p = (t_cub *)cub;
-	if (keycode == ESC_KEY_CODE)
-		exit_cub(cub, NULL, EXIT_SUCCESS);
-	if (keycode == W_KEY_CODE)
-		cub_p->player->moves.forw = 0;
-	if (keycode == A_KEY_CODE)
+	if (keydata.key == MLX_KEY_A && (keydata.action == MLX_RELEASE))
 		cub_p->player->moves.left = 0;
-	if (keycode == S_KEY_CODE)
-		cub_p->player->moves.backw = 0;
-	if (keycode == D_KEY_CODE)
+	else if (keydata.key == MLX_KEY_D && (keydata.action == MLX_RELEASE))
 		cub_p->player->moves.right = 0;
-	if (keycode == LEFT_KEY_CODE)
+	else if (keydata.key == MLX_KEY_S && (keydata.action == MLX_RELEASE))
+		cub_p->player->moves.backw = 0;
+	else if (keydata.key == MLX_KEY_W && keydata.action == MLX_RELEASE)
+		cub_p->player->moves.forw = 0;
+	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_RELEASE)
 		cub_p->player->moves.rot_left = 0;
-	if (keycode == RIGHT_KEY_CODE)
+	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_RELEASE)
 		cub_p->player->moves.rot_right = 0;
-	return (1);
+}
+
+void	key_handler(mlx_key_data_t keydata, void *cub)
+{
+	key_press(keydata, cub);
+	key_release(keydata, cub);
 }
 
 int	quit_cub(void *cub)

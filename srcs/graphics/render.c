@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pedro-go <pedro-go@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/22 18:01:49 by pedro-go          #+#    #+#             */
+/*   Updated: 2024/05/22 18:01:50 by pedro-go         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	render_floor_and_ceiling(t_cub *cub, double upper_pixel,
@@ -5,7 +17,7 @@ void	render_floor_and_ceiling(t_cub *cub, double upper_pixel,
 {
 	int	pixel;
 
-	pixel =  bottom_pixel;
+	pixel = bottom_pixel;
 	while (pixel < W_HEIGHT)
 	{
 		put_pixel(cub, cub->ray->index, pixel, cub->map->floor.color);
@@ -22,11 +34,11 @@ void	render_floor_and_ceiling(t_cub *cub, double upper_pixel,
 void	render_wall(t_cub *cub, int upper_pixel, int bottom_pixel,
 		double wall_height)
 {
-	double		x_offset;
-	double		y_offset;
-	double		factor;
-	t_image		*texture;
-	__uint32_t	*pixels;
+	double			x_offset;
+	double			y_offset;
+	double			factor;
+	mlx_texture_t	*texture;
+	__uint32_t		*pixels;
 
 	texture = get_texture(cub);
 	pixels = (__uint32_t *)texture->pixels;
@@ -37,8 +49,9 @@ void	render_wall(t_cub *cub, int upper_pixel, int bottom_pixel,
 		y_offset = 0;
 	while (upper_pixel < bottom_pixel)
 	{
-		put_pixel(cub, cub->ray->index, upper_pixel, pixels[(int)y_offset
-			* texture->width + (int)x_offset]);
+		put_pixel(cub, cub->ray->index, upper_pixel,
+			reverse_bytes(pixels[(int)y_offset * texture->width
+				+ (int)x_offset]));
 		y_offset += factor;
 		upper_pixel++;
 	}
