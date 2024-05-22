@@ -2,7 +2,8 @@ NAME = cub3d
 
 SRCS = ./srcs/main.c ./srcs/clean.c ./srcs/parsing/parse_main.c ./srcs/parsing/parse_utils.c \
 		./srcs/parsing/copy_file.c ./srcs/utils/utils.c ./srcs/utils/print.c \
-		./srcs/parsing/get_info.c ./srcs/parsing/colours.c ./srcs/parsing/map_check.c
+		./srcs/parsing/get_info.c ./srcs/parsing/colours.c ./srcs/parsing/map_check.c \
+		./srcs/parsing/map_check1.c
 			
 INCLUDE = ./include/cub3d.h ${LIBFT_DIR}/libft.h ${MINILIBX_DIR}/mlx.h
 
@@ -21,8 +22,7 @@ endif
 
 CC = gcc
 RM = rm -f
-CFLAGS = -Wall -Wextra -Werror -MMD
-
+CFLAGS = -Wall -Wextra -Werror -MMD -fsanitize=address
 DEL_LINE =		\033[2K
 ITALIC =		\033[3m
 BOLD =			\033[1m
@@ -53,7 +53,7 @@ DEPS = $(addsuffix .d, $(basename $(SRCS)))
 all: ${NAME}
 
 ${NAME}: ${OBJS} ${LIBFT_DIR}/libft.a ${MINILIBX_DIR}/libmlx.a $(INCLUDE) Makefile
-	@${CC} ${OBJS} -I./include -L${LIBFT_DIR} -L${MINILIBX_DIR} ${LIBRARIES} -o ${NAME}
+	@${CC} ${CFLAGS} ${OBJS} -I./include -L${LIBFT_DIR} -L${MINILIBX_DIR} ${LIBRARIES} -o ${NAME}
 	@echo "\n$(RED) Created $(NAME) ✓ $(DEF_COLOR)\n"
 
 $(LIBFT_DIR)/libft.a:

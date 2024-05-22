@@ -6,7 +6,7 @@
 /*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:34:53 by pedro-go          #+#    #+#             */
-/*   Updated: 2024/05/21 13:23:12 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/05/22 14:36:11 by adanylev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_color
 	int			r;
 	int			g;
 	int			b;
+	int			color;
 }				t_color;
 
 typedef struct s_player
@@ -49,17 +50,13 @@ typedef struct s_player
 	t_point		pos_pix;
 }				t_player;
 
-typedef struct s_textures
+typedef struct s_paths
 {
 	char		*no_path;
 	char		*so_path;
 	char		*we_path;
 	char		*ea_path;
-	void		*no;
-	void		*so;
-	void		*we;
-	void		*ea;
-}				t_textures;
+}				t_paths;
 
 typedef struct s_map
 {
@@ -74,7 +71,7 @@ typedef struct s_map
 
 typedef struct s_cub
 {
-	t_textures	*textures;
+	t_paths		*paths;
 	t_map		*map;
 	t_player	*player;
 	void		*mlx_ptr;
@@ -107,6 +104,9 @@ char			*ft_strjoin1(char *s1, char *s2);
 int 			is_whitespace(char c);
 void    		get_map(t_parse *info, t_cub *cub, char **file);
 int				count_lines(char **str);
+int				check_player(t_parse *info, t_cub *cub);
+int				check_walls(t_parse *info);
+void			ft_copy(char *dst, char *src);
 
 /*=============================UTILS============================*/
 
@@ -115,5 +115,6 @@ int				ft_strrncmp(char *s1, char *s2, int n);
 void			print_cub(t_cub *cub);
 void			clean_cub(t_cub *cub);
 void			exit_cub(t_cub *cub, char *msg, int status);
+void			free_ptr(void *ptr);
 
 #endif

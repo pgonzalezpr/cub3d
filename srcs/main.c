@@ -6,7 +6,7 @@
 /*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:35:32 by pedro-go          #+#    #+#             */
-/*   Updated: 2024/05/15 12:14:18 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/05/22 13:23:14 by adanylev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	exit_cub(t_cub *cub, char *msg, int status)
 void	init_cub(t_cub *cub)
 {
 	ft_memset(cub, 0, sizeof(t_cub));
-	cub->textures = ft_malloc(sizeof(t_textures), cub);
+	cub->paths = ft_malloc(sizeof(t_paths), cub);
 	cub->map = ft_malloc(sizeof(t_map), cub);
 	cub->player = ft_malloc(sizeof(t_player), cub);
 }

@@ -6,7 +6,7 @@
 /*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 12:34:57 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/21 11:22:48 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/05/22 13:26:42 by adanylev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,17 @@ void	check_params(char **file, t_parse *info)
 
 int	check_extentions(t_cub *cub)
 {
-	if (ft_strrncmp(cub->textures->no_path, ".xpm", 4) &&
-		ft_strrncmp(cub->textures->no_path, ".png", 4))
+	if (ft_strrncmp(cub->paths->no_path, ".xpm", 4) &&
+		ft_strrncmp(cub->paths->no_path, ".png", 4))
 		return (1);
-	if (ft_strrncmp(cub->textures->so_path, ".xpm", 4) &&
-		ft_strrncmp(cub->textures->so_path, ".png", 4))
+	if (ft_strrncmp(cub->paths->so_path, ".xpm", 4) &&
+		ft_strrncmp(cub->paths->so_path, ".png", 4))
 		return (1);
-	if (ft_strrncmp(cub->textures->we_path, ".xpm", 4) &&
-		ft_strrncmp(cub->textures->we_path, ".png", 4))
+	if (ft_strrncmp(cub->paths->we_path, ".xpm", 4) &&
+		ft_strrncmp(cub->paths->we_path, ".png", 4))
 		return (1);
-	if (ft_strrncmp(cub->textures->ea_path, ".xpm", 4) &&
-		ft_strrncmp(cub->textures->ea_path, ".png", 4))
+	if (ft_strrncmp(cub->paths->ea_path, ".xpm", 4) &&
+		ft_strrncmp(cub->paths->ea_path, ".png", 4))
 		return (1);
 	return (0);
 }
@@ -78,13 +78,13 @@ int	get_textures(t_cub *cub, char **file)
 		while (file[x][y] && file[x][y + 1])
 		{
 			if (file[x][y] == 'N' && file[x][y + 1] == 'O')
-				cub->textures->no_path = ft_strtrim(file[x], "NO \t");
+				cub->paths->no_path = ft_strtrim(file[x], "NO \t");
 			else if (file[x][y] == 'S' && file[x][y + 1] == 'O')
-				cub->textures->so_path = ft_strtrim(file[x], "SO \t");
+				cub->paths->so_path = ft_strtrim(file[x], "SO \t");
 			else if (file[x][y] == 'W' && file[x][y + 1] == 'E') 
-				cub->textures->we_path = ft_strtrim(file[x], "WE \t");
+				cub->paths->we_path = ft_strtrim(file[x], "WE \t");
 			else if (file[x][y] == 'E' && file[x][y + 1] == 'A') 
-				cub->textures->ea_path = ft_strtrim(file[x], "EA \t");
+				cub->paths->ea_path = ft_strtrim(file[x], "EA \t");
 			else if (file[x][y] == 'F' || file[x][y] == 'C')
 				if (get_colours(&file[x][y], cub))
 					return (1);

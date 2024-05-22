@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colours.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
+/*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 12:46:33 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/18 15:48:36 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/22 14:59:30 by adanylev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,21 @@ void	fill_colours(char **tmp, t_cub *cub, char c)
 {
 	if (c == 'f')
 	{
-		cub->map->floor.r = ft_atoi(tmp[0]);
-		cub->map->floor.g = ft_atoi(tmp[1]);
-		cub->map->floor.b = ft_atoi(tmp[2]);
+		if (tmp[0])
+			cub->map->floor.r = ft_atoi(tmp[0]);
+		if (tmp[1])
+			cub->map->floor.g = ft_atoi(tmp[1]);
+		if (tmp[2])
+			cub->map->floor.b = ft_atoi(tmp[2]);
 	}
 	else if (c == 'c')
 	{
-		cub->map->ceiling.r = ft_atoi(tmp[0]);
-		cub->map->ceiling.g = ft_atoi(tmp[1]);
-		cub->map->ceiling.b = ft_atoi(tmp[2]);
+		if (tmp[0])
+			cub->map->ceiling.r = ft_atoi(tmp[0]);
+		if (tmp[1])
+			cub->map->ceiling.g = ft_atoi(tmp[1]);
+		if (tmp[2])
+			cub->map->ceiling.b = ft_atoi(tmp[2]);
 	}
 }
 
@@ -53,7 +59,6 @@ int	get_colours(char *colour, t_cub *cub)
 	i = -1;
 	while (tmp[++i])
 	{
-
 		trimmed = ft_strtrim(tmp[i], " \t");
 		if (check_nums(trimmed) || i > 2 || ft_strlen(trimmed) > 3 || 
 			((ft_strlen(trimmed)) == 3 && (ft_strncmp("256", trimmed, 3) <= 0)))
@@ -63,6 +68,8 @@ int	get_colours(char *colour, t_cub *cub)
 		}
 		free(trimmed);
 	}
+	if (i < 3)
+		return (free_matrix(tmp, 1));
 	if (colour[0] == 'F')
 		fill_colours(tmp, cub, 'f');
 	else if (colour[0] == 'C')

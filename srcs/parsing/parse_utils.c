@@ -6,11 +6,24 @@
 /*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:56:26 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/21 13:22:41 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:23:36 by adanylev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	ft_copy(char *dst, char *src)
+{
+	int	i;
+
+	i = 0;
+	
+	while (src[i])
+	{
+		dst[i + 1] = src[i];
+		i++;
+	}
+}
 
 int count_lines(char **str) 
 {
@@ -33,7 +46,8 @@ int	free_matrix(char **matrix, int err)
 		matrix[i] = NULL;
 		i++;
 	}
-	free(matrix);
+	if (matrix)
+		free(matrix);
 	if (err)
 		return (1);
 	return (0);
