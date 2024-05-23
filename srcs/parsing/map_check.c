@@ -17,11 +17,13 @@ void	fill_with_spaces(t_parse *info, t_cub *cub)
 	int	x;
 	int	y;
 
-	x = 0;		
+	x = 0;
 	while (x < cub->map->height + 3)
 	{
-		info->map_matrix[x] = ft_malloc(sizeof(char) * (cub->map->width + 3), cub);
-		info->map_matrix[x] = ft_memset(info->map_matrix[x], ' ', cub->map->width + 2);
+		info->map_matrix[x] = ft_malloc(sizeof(char) * (cub->map->width + 3),
+				cub);
+		info->map_matrix[x] = ft_memset(info->map_matrix[x], ' ',
+				cub->map->width + 2);
 		info->map_matrix[x][cub->map->width + 2] = '\0';
 		x++;
 	}
@@ -34,7 +36,7 @@ void	fill_with_spaces(t_parse *info, t_cub *cub)
 	}
 }
 
-int		find_longest_line(char **matrix)
+int	find_longest_line(char **matrix)
 {
 	int	x;
 	int	y;
@@ -42,7 +44,7 @@ int		find_longest_line(char **matrix)
 
 	x = 0;
 	len = (int)ft_strlen(matrix[x]);
-	while(matrix[x])
+	while (matrix[x])
 	{
 		y = x + 1;
 		if (matrix[y] && len < (int)ft_strlen(matrix[y]))
@@ -52,7 +54,7 @@ int		find_longest_line(char **matrix)
 	return (len);
 }
 
-void    create_buffer(t_parse *info, t_cub *cub)
+void	create_buffer(t_parse *info, t_cub *cub)
 {
 	cub->map->height = count_lines(cub->map->map_arr);
 	cub->map->width = find_longest_line(cub->map->map_arr);
@@ -61,27 +63,28 @@ void    create_buffer(t_parse *info, t_cub *cub)
 	fill_with_spaces(info, cub);
 }
 
-void    get_map(t_parse *info, t_cub *cub, char **file)
+void	get_map(t_parse *info, t_cub *cub, char **file)
 {
-    int x;
-    int y;
-    
-    x = 5;
-    cub->map->map_arr = ft_malloc(((count_lines(file) - 6) + 1) * sizeof(char *), cub);
-    while (file[x])
-    {
-        y = 0;
-        while (file[x][y] && is_whitespace(file[x][y]))
-            y++;
-        if ('1' == file[x][y])
-            break;
-        x++;
-    }
-    y = 0;
-    while (y < count_lines(file) - 6 && file[x])
-        cub->map->map_arr[y++] = ft_strdup(file[x++]);
-    cub->map->map_arr[y] = NULL;
-    free_matrix(file, 0);
+	int	x;
+	int	y;
+
+	x = 5;
+	cub->map->map_arr = ft_malloc(((count_lines(file) - 6) + 1)
+			* sizeof(char *), cub);
+	while (file[x])
+	{
+		y = 0;
+		while (file[x][y] && is_whitespace(file[x][y]))
+			y++;
+		if ('1' == file[x][y])
+			break ;
+		x++;
+	}
+	y = 0;
+	while (y < count_lines(file) - 6 && file[x])
+		cub->map->map_arr[y++] = ft_strdup(file[x++]);
+	cub->map->map_arr[y] = NULL;
+	free_matrix(file, 0);
 	create_buffer(info, cub);
 	if (check_player(info, cub) || check_walls(info))
 		exit_cub(cub, "Invalid map\n", EXIT_FAILURE);

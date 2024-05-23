@@ -17,7 +17,6 @@ void	ft_copy(char *dst, char *src)
 	int	i;
 
 	i = 0;
-	
 	while (src[i])
 	{
 		dst[i + 1] = src[i];
@@ -25,19 +24,19 @@ void	ft_copy(char *dst, char *src)
 	}
 }
 
-int count_lines(char **str) 
+int	count_lines(char **str)
 {
-    int i;
-    
-    i = 0;
-    while (str[i])
-        i++;
-    return (i);
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
 
 int	free_matrix(char **matrix, int err)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (matrix[i])

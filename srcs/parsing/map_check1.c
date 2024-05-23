@@ -40,7 +40,7 @@ int	check_player(t_parse *info, t_cub *cub)
 	}
 	if (info->player != 1)
 		return (1);
-	return(0);
+	return (0);
 }
 
 int	check_walls(t_parse *info)
@@ -56,11 +56,14 @@ int	check_walls(t_parse *info)
 		{
 			if (info->map_matrix[x][y] == '0')
 			{
-				if (info->map_matrix[x - 1][y] == ' ' || info->map_matrix[x - 1][y] == '\t' ||
-					info->map_matrix[x][y - 1] == ' ' || info->map_matrix[x][y - 1] == '\t'
-					|| info->map_matrix[x + 1][y] == ' ' || info->map_matrix[x + 1][y] == '\t'
-					|| info->map_matrix[x][y + 1] == ' ' || info->map_matrix[x][y + 1] == '\t')
-						return (free_matrix(info->map_matrix, 1));
+				if (info->map_matrix[x - 1][y] == ' ' || info->map_matrix[x
+					- 1][y] == '\t' ||
+					info->map_matrix[x][y - 1] == ' ' || info->map_matrix[x][y
+						- 1] == '\t' || info->map_matrix[x + 1][y] == ' '
+						|| info->map_matrix[x + 1][y] == '\t'
+						|| info->map_matrix[x][y + 1] == ' '
+						|| info->map_matrix[x][y + 1] == '\t')
+					return (free_matrix(info->map_matrix, 1));
 			}
 			y++;
 		}
