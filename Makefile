@@ -22,7 +22,7 @@ endif
 
 CC = gcc
 RM = rm -f
-CFLAGS = -Wall -Wextra -Werror -MMD -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -MMD #-fsanitize=address
 DEL_LINE =		\033[2K
 ITALIC =		\033[3m
 BOLD =			\033[1m

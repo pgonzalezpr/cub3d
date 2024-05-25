@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   copy_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 11:27:03 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/21 11:38:39 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/05/23 21:25:38 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int validate_single_map(char *content)
             while (content[i]) 
 			{
 				if (content[i] == '\n' && content[i + 1] && content[i + 1] == '\n')
-					return (1);
+				 	break;
                 if (!ft_strchr(MAP_CHAR, content[i]) && !is_whitespace(content[i]))
                     return (1);
                 i++;

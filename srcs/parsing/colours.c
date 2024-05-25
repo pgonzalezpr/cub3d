@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colours.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 12:46:33 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/22 14:59:30 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/05/24 12:15:03 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ int	get_colours(char *colour, t_cub *cub)
 		fill_colours(tmp, cub, 'f');
 	else if (colour[0] == 'C')
 		fill_colours(tmp, cub, 'c');
+	free_matrix(tmp, 0);
 	return (0);
 }

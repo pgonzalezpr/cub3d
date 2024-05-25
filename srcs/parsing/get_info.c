@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 12:34:57 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/22 13:26:42 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/05/24 12:14:06 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
