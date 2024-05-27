@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colours.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
+/*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 12:46:33 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/24 12:15:03 by annadanylev      ###   ########.fr       */
+/*   Updated: 2024/05/27 11:08:12 by adanylev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	check_nums(char *str)
 {
 	int	i;
-	
+
 	i = 0;
 	while (str[i])
 	{
@@ -25,7 +25,6 @@ int	check_nums(char *str)
 	}
 	return (0);
 }
-
 
 void	fill_colours(char **tmp, t_cub *cub, char c)
 {
@@ -52,16 +51,17 @@ void	fill_colours(char **tmp, t_cub *cub, char c)
 int	get_colours(char *colour, t_cub *cub)
 {
 	char	**tmp;
-	char 	*trimmed;
+	char	*trimmed;
 	int		i;
 
-	tmp = ft_split(&colour[1], ',');	
+	tmp = ft_split(&colour[1], ',');
 	i = -1;
 	while (tmp[++i])
 	{
 		trimmed = ft_strtrim(tmp[i], " \t");
-		if (check_nums(trimmed) || i > 2 || ft_strlen(trimmed) > 3 || 
-			((ft_strlen(trimmed)) == 3 && (ft_strncmp("256", trimmed, 3) <= 0)))
+		if (check_nums(trimmed) || i > 2 || ft_strlen(trimmed) > 3
+			|| ((ft_strlen(trimmed)) == 3 && (ft_strncmp("256", trimmed,
+						3) <= 0)))
 		{
 			free(trimmed);
 			return (free_matrix(tmp, 1));
@@ -74,6 +74,5 @@ int	get_colours(char *colour, t_cub *cub)
 		fill_colours(tmp, cub, 'f');
 	else if (colour[0] == 'C')
 		fill_colours(tmp, cub, 'c');
-	free_matrix(tmp, 0);
-	return (0);
+	return (free_matrix(tmp, 0));
 }
