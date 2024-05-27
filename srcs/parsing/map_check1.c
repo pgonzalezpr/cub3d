@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 11:16:46 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/22 15:25:58 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/05/27 11:45:18 by adanylev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,16 @@ int	check_walls(t_parse *info)
 		y = 0;
 		while (info->map_matrix[x][y])
 		{
-			if (info->map_matrix[x][y] == '0')
+			if (info->map_matrix[x][y] == '0' || ft_strchr(PLAYER,
+					info->map_matrix[x][y]))
 			{
 				if (info->map_matrix[x - 1][y] == ' ' || info->map_matrix[x
-					- 1][y] == '\t' ||
-					info->map_matrix[x][y - 1] == ' ' || info->map_matrix[x][y
-						- 1] == '\t' || info->map_matrix[x + 1][y] == ' '
-						|| info->map_matrix[x + 1][y] == '\t'
-						|| info->map_matrix[x][y + 1] == ' '
-						|| info->map_matrix[x][y + 1] == '\t')
-					return (free_matrix(info->map_matrix, 1));
+					- 1][y] == '\t' || info->map_matrix[x][y - 1] == ' '
+					|| info->map_matrix[x][y - 1] == '\t' || info->map_matrix[x
+					+ 1][y] == ' ' || info->map_matrix[x + 1][y] == '\t'
+					|| info->map_matrix[x][y + 1] == ' '
+					|| info->map_matrix[x][y + 1] == '\t')
+					return (1);
 			}
 			y++;
 		}

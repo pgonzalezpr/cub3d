@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 12:34:57 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/22 13:26:42 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/05/27 11:35:40 by adanylev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,25 +43,25 @@ void	check_params(char **file, t_parse *info)
 
 int	check_extentions(t_cub *cub)
 {
-	if (ft_strrncmp(cub->paths->no_path, ".xpm", 4) &&
-		ft_strrncmp(cub->paths->no_path, ".png", 4))
+	if (ft_strrncmp(cub->paths->no_path, ".xpm", 4)
+		&& ft_strrncmp(cub->paths->no_path, ".png", 4))
 		return (1);
-	if (ft_strrncmp(cub->paths->so_path, ".xpm", 4) &&
-		ft_strrncmp(cub->paths->so_path, ".png", 4))
+	if (ft_strrncmp(cub->paths->so_path, ".xpm", 4)
+		&& ft_strrncmp(cub->paths->so_path, ".png", 4))
 		return (1);
-	if (ft_strrncmp(cub->paths->we_path, ".xpm", 4) &&
-		ft_strrncmp(cub->paths->we_path, ".png", 4))
+	if (ft_strrncmp(cub->paths->we_path, ".xpm", 4)
+		&& ft_strrncmp(cub->paths->we_path, ".png", 4))
 		return (1);
-	if (ft_strrncmp(cub->paths->ea_path, ".xpm", 4) &&
-		ft_strrncmp(cub->paths->ea_path, ".png", 4))
+	if (ft_strrncmp(cub->paths->ea_path, ".xpm", 4)
+		&& ft_strrncmp(cub->paths->ea_path, ".png", 4))
 		return (1);
 	return (0);
 }
 
 int	validate_params(t_parse *info)
 {
-	if (info->c != 1 || info->f != 1 || info->ea != 1 || info->we != 1 ||
-		info->so != 1 || info->no != 1)
+	if (info->c != 1 || info->f != 1 || info->ea != 1 || info->we != 1
+		|| info->so != 1 || info->no != 1)
 		return (1);
 	return (0);
 }
@@ -96,7 +96,7 @@ int	get_textures(t_cub *cub, char **file)
 
 void	get_matrix(t_parse *info, t_cub *cub)
 {
-	char **file;
+	char	**file;
 
 	file = ft_split(info->map_line, '\n');
 	free(info->map_line);

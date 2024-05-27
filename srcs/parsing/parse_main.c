@@ -6,7 +6,7 @@
 /*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 17:15:02 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/21 13:11:50 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/05/27 11:45:37 by adanylev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 /**
  *  Textures paths should go into cub->textures->xx_path
  * 	RGB color components should go into cub->map->floor/ceiling.r/g/b
- * 
+ *
  *  The map should be allocated with malloc and saved in into cub->map->map_arr.
  *  Store map dimensions in cub->map->heigth/width
- * 
- *  The player initial position has to be stored in cub->map->initial.x/y. 
- *  X and y are the horizontal and vertical dimensions, measured from 0 to 
- *  cub->map->width and cub->map->height, respectively. Store the player 
- *  initial orientation in cub->map->ply_type. 
-*/
+ *
+ *  The player initial position has to be stored in cub->map->initial.x/y.
+ *  X and y are the horizontal and vertical dimensions, measured from 0 to
+ *  cub->map->width and cub->map->height, respectively. Store the player
+ *  initial orientation in cub->map->ply_type.
+ */
 void	init(t_parse *info)
 {
 	info->map_line = NULL;

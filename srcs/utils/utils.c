@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:56:26 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/22 14:35:51 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/05/25 13:28:57 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

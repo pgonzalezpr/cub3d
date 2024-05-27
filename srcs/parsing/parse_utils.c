@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adanylev <adanylev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 10:56:26 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/22 15:23:36 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/05/27 11:46:04 by adanylev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
