@@ -1,7 +1,6 @@
-NO textures/test/north.xpm
-SO textures/test/south.xpm
-WE textures/test/west.xpm
-
+NO textures/north.png
+SO textures/south.png
+WE textures/west.png
 
 F 20,200, 200
 C 200,200,200

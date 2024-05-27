@@ -12,12 +12,18 @@
 
 #include "cub3d.h"
 
+void	delete_texture(mlx_texture_t *texture)
+{
+	if (texture)
+		mlx_delete_texture(texture);
+}
+
 void	clean_textures(t_cub *cub)
 {
-	mlx_delete_texture(cub->textures->no);
-	mlx_delete_texture(cub->textures->so);
-	mlx_delete_texture(cub->textures->ea);
-	mlx_delete_texture(cub->textures->we);
+	delete_texture(cub->textures->no);
+	delete_texture(cub->textures->so);
+	delete_texture(cub->textures->ea);
+	delete_texture(cub->textures->we);
 	free_ptr(cub->textures);
 }
 
@@ -58,6 +64,8 @@ void	clean_cub(t_cub *cub)
 	free_ptr(cub->ray);
 	free_ptr(cub->player);
 	clean_textures(cub);
-	mlx_delete_image(cub->mlx_ptr, cub->img);
-	mlx_close_window(cub->mlx_ptr);
+	if (cub->mlx_ptr && cub->img)
+		mlx_delete_image(cub->mlx_ptr, cub->img);
+	if (cub->mlx_ptr)
+		mlx_close_window(cub->mlx_ptr);
 }

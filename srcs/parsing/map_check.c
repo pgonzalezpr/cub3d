@@ -67,7 +67,7 @@ void	get_map(t_parse *info, t_cub *cub, char **file)
 {
 	int	x;
 	int	y;
-  
+
 	x = 4;
 	cub->map->map_arr = ft_malloc(((count_lines(file) - 6) + 1)
 			* sizeof(char *), cub);
