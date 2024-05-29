@@ -36,6 +36,8 @@ int	ft_strrncmp(char *s1, char *s2, int n)
 
 	i = ft_strlen(s1) - 1;
 	j = ft_strlen(s2) - 1;
+	if (!s1)
+		return (1);
 	while (n && s1[i] && s2[j])
 	{
 		if (s2[j] != s1[i])

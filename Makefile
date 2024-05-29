@@ -8,7 +8,7 @@ LIB = -L/Users/${USER}/.brew/Cellar/glfw/3.4/lib
 HEADERS = ./include/cub3d.h ./include/libft.h ./include/MLX42.h
 
 CC		= gcc
-CFLAGS	= -Wall -Werror -Wextra -O3 -ffast-math -MMD
+CFLAGS	= -Wall -Werror -Wextra -O3 -ffast-math -MMD -fsanitize=address
 
 DEL_LINE =		\033[2K
 ITALIC =		\033[3m
@@ -43,7 +43,7 @@ DEPS = $(addsuffix .d, $(basename $(SRCS)))
 
 all: $(NAME)
 
-$(NAME): $(MOBJS) ${MLX} ${HEADERS}
+$(NAME): $(MOBJS) ${MLX} ${HEADERS} Makefile
 	@make -s -C $(LIBFT)
 	@$(CC) $(CFLAGS) $(FLAG_MLX) $(MOBJS) ${LIBFT}/libft.a $(MLX) $(LIB) -o $(NAME)
 	@echo "\n$(RED) Created $(NAME) ✓ $(DEF_COLOR)\n"

@@ -43,17 +43,13 @@ void	check_params(char **file, t_parse *info)
 
 int	check_extentions(t_cub *cub)
 {
-	if (ft_strrncmp(cub->paths->no_path, ".xpm", 4)
-		&& ft_strrncmp(cub->paths->no_path, ".png", 4))
+	if (!check_file_format(cub->paths->no_path, ".png"))
 		return (1);
-	if (ft_strrncmp(cub->paths->so_path, ".xpm", 4)
-		&& ft_strrncmp(cub->paths->so_path, ".png", 4))
+	if (!check_file_format(cub->paths->so_path, ".png"))
 		return (1);
-	if (ft_strrncmp(cub->paths->we_path, ".xpm", 4)
-		&& ft_strrncmp(cub->paths->we_path, ".png", 4))
+	if (!check_file_format(cub->paths->we_path, ".png"))
 		return (1);
-	if (ft_strrncmp(cub->paths->ea_path, ".xpm", 4)
-		&& ft_strrncmp(cub->paths->ea_path, ".png", 4))
+	if (!check_file_format(cub->paths->ea_path, ".png"))
 		return (1);
 	return (0);
 }

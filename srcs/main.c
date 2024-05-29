@@ -37,17 +37,25 @@ void	init_cub(t_cub *cub)
 /**
  * Buffer-safe check for .cub extension
 */
-void	check_input(int argc, char **argv)
+
+int	check_file_format(char *file, char *format)
 {
 	size_t	len;
 	char	*begin;
 
+	len = ft_strlen(format);
+	begin = ft_strchr(file, '.');
+	if (!begin || ft_strlen(begin) != len
+		|| ft_strncmp(begin, format, len))
+		return (0);
+	return (1);
+}
+
+void	check_input(int argc, char **argv)
+{
 	if (argc != 2)
 		exit_cub(NULL, ARGC_ERR, EXIT_FAILURE);
-	len = ft_strlen(FILE_FORMAT);
-	begin = ft_strchr(argv[1], '.');
-	if (!begin || ft_strlen(begin) != len
-		|| ft_strncmp(begin, FILE_FORMAT, len))
+	if (check_file_format(argv[1], FILE_FORMAT))
 		exit_cub(NULL, FORMAT_ERR, EXIT_FAILURE);
 }
 

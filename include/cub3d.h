@@ -187,11 +187,11 @@ int					reverse_bytes(int c);
 /*=============================UTILS============================*/
 
 void				*ft_malloc(size_t bytes, t_cub *cub);
-int					ft_strrncmp(char *s1, char *s2, int n);
 float				normalize_angle(float angle);
 void				clean_cub(t_cub *cub);
 void				print_cub(t_cub *cub);
 void				exit_cub(t_cub *cub, char *msg, int status);
 void				free_ptr(void *ptr);
+int					check_file_format(char *file, char *format);
 
 #endif
