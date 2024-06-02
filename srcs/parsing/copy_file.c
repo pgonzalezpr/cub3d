@@ -71,8 +71,10 @@ int	validate_single_map(char *content)
 					&& !is_whitespace(content[i]))
 					return (1);
 				i++;
-			}
+			}	
 		}
+		if (content[i])
+			i++;
 	}
 	return (!in_map);
 }
