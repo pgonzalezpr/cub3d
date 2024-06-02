@@ -55,7 +55,7 @@ void	check_input(int argc, char **argv)
 {
 	if (argc != 2)
 		exit_cub(NULL, ARGC_ERR, EXIT_FAILURE);
-	if (check_file_format(argv[1], FILE_FORMAT))
+	if (!check_file_format(argv[1], FILE_FORMAT))
 		exit_cub(NULL, FORMAT_ERR, EXIT_FAILURE);
 }
 
