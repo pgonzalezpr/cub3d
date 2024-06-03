@@ -6,7 +6,7 @@
 /*   By: annadanylevych <annadanylevych@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 11:16:46 by adanylev          #+#    #+#             */
-/*   Updated: 2024/05/27 11:45:18 by adanylev         ###   ########.fr       */
+/*   Updated: 2024/06/03 14:00:39 by annadanylev      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	check_player(t_parse *info, t_cub *cub)
 				if (info->player != 1)
 					return (1);
 				cub->map->ply_type = cub->map->map_arr[x][y];
-				cub->map->initial.x = x;
-				cub->map->initial.y = y;
+				cub->map->initial.x = y;
+				cub->map->initial.y = x;
 			}
 			y++;
 		}
