@@ -19,8 +19,8 @@ void	exit_cub(t_cub *cub, char *msg, int status)
 {
 	if (cub)
 		clean_cub(cub);
-	if (msg)
-		write(STDERR_FILENO, msg, ft_strlen(msg));
+	if (msg && write(STDERR_FILENO, msg, ft_strlen(msg)) == -1)
+		exit(EXIT_FAILURE);
 	exit(status);
 }
 
