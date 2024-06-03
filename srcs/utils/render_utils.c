@@ -63,7 +63,7 @@ mlx_texture_t	*get_texture(t_cub *cub)
 	else
 	{
 		if (cub->ray->angle > PI / 2 && cub->ray->angle < 3 * PI / 2)
-			return (cub->textures->ea);
-		return (cub->textures->we);
+			return (cub->textures->we);
+		return (cub->textures->ea);
 	}
 }
