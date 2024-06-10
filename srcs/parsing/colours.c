@@ -59,8 +59,8 @@ int	get_colours(char *colour, t_cub *cub)
 	while (tmp[++i])
 	{
 		trimmed = ft_strtrim(tmp[i], " \t");
-		if (check_nums(trimmed) || i > 2 || ft_atoi(trimmed) > 255 ||
-			ft_atoi(trimmed) < 0)
+		if (check_nums(trimmed) || i > 2 || ft_atoi(trimmed) > 255
+			|| ft_atoi(trimmed) < 0)
 		{
 			free(trimmed);
 			return (free_matrix(tmp, 1));
